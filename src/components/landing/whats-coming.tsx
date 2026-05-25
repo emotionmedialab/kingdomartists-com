@@ -50,7 +50,7 @@ export function WhatsComing() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}

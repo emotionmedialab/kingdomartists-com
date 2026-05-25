@@ -25,7 +25,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 sm:mt-10 pt-6 border-t border-background/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-background/20">
-          <span>&copy; 2025 Kingdom Artists. All rights reserved.</span>
+          <span>&copy; 2026 Kingdom Artists. All rights reserved.</span>
           <span>Built with purpose.</span>
         </div>
       </div>

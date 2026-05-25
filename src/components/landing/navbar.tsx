@@ -60,7 +60,7 @@ export function Navbar() {
           >
             <nav className="flex flex-col gap-0.5 p-4">
               {[
-                { href: "#discover", label: "Discover" },
+                { href: "/discover", label: "Discover" },
                 { href: "#mission", label: "Mission" },
                 { href: "#join", label: "Community" },
               ].map((link) => (

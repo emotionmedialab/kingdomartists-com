@@ -157,9 +157,14 @@ export default function ProfilePage() {
                 className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/40 border border-border/30 text-sm"
               >
                 <SocialIcon platform={platform} />
-                <span className="text-foreground/70 text-xs truncate capitalize">
-                  {platform}: {handle}
-                </span>
+                <div className="min-w-0">
+                  <div className="text-[11px] text-muted-foreground/50 uppercase tracking-wider capitalize">
+                    {platform}
+                  </div>
+                  <div className="text-foreground/80 truncate text-xs">
+                    {handle}
+                  </div>
+                </div>
               </div>
             ))}
           </motion.div>

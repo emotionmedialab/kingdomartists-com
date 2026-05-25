@@ -98,7 +98,7 @@ export function CommunityShowcase() {
                 <h3 className="text-white text-sm sm:text-base font-medium leading-tight">
                   {d.name}
                 </h3>
-                <p className="text-white/50 text-xs sm:text-sm mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white/50 text-xs sm:text-sm mt-0.5 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                   {d.sub}
                 </p>
               </div>
