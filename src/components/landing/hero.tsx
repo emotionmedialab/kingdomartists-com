@@ -103,7 +103,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
-          className="inline-block text-[10px] sm:text-xs tracking-[0.3em] uppercase text-muted-foreground mb-6 sm:mb-8"
+          className="inline-block text-[11px] sm:text-xs tracking-[0.2em] uppercase text-foreground/50 mb-6 sm:mb-8"
         >
           A digital home for Kingdom-minded creatives
         </motion.span>

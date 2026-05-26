@@ -13,6 +13,8 @@ import {
   Music,
   ExternalLink,
   Calendar,
+  Share2,
+  Heart,
 } from "lucide-react";
 import { VerifiedBadge } from "@/components/app/verified-badge";
 import { ArtistCard } from "@/components/app/artist-card";
@@ -65,7 +67,9 @@ export default function ArtistProfilePage({
   if (!artist) {
     return (
       <div className="max-w-3xl mx-auto px-5 py-20 text-center">
-        <h1 className="text-2xl font-medium">Artist not found</h1>
+        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-medium">
+          Artist not found
+        </h1>
         <p className="text-muted-foreground text-sm mt-2">
           This profile doesn&apos;t exist or has been removed.
         </p>
@@ -100,20 +104,27 @@ export default function ArtistProfilePage({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease }}
-        className="relative h-48 sm:h-64 lg:h-72 bg-muted overflow-hidden"
+        className="relative h-44 sm:h-56 lg:h-64 bg-muted overflow-hidden"
       >
         <img
           src={artist.banner}
           alt=""
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <Link
-          href="/discover"
-          className="absolute top-4 left-4 sm:top-6 sm:left-6 p-2 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Link>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex gap-2">
+          <Link
+            href="/discover"
+            className="p-2 rounded-full bg-black/30 backdrop-blur-md text-white hover:bg-black/50 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+        </div>
+        <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex gap-2">
+          <button className="p-2 rounded-full bg-black/30 backdrop-blur-md text-white hover:bg-black/50 transition-colors">
+            <Share2 className="w-4 h-4" />
+          </button>
+        </div>
       </motion.div>
 
       <div className="max-w-3xl mx-auto px-5 sm:px-6">
@@ -122,13 +133,13 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease }}
-          className="-mt-16 sm:-mt-20 relative"
+          className="-mt-14 sm:-mt-18 relative"
         >
-          <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-5">
             <img
               src={artist.image}
               alt={artist.name}
-              className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover border-4 border-background shadow-lg"
+              className="w-26 h-26 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-background shadow-lg"
             />
             <div className="flex-1 pb-1">
               <h1 className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl font-medium flex items-center gap-2">
@@ -138,13 +149,13 @@ export default function ArtistProfilePage({
               <p className="text-muted-foreground text-sm sm:text-base mt-0.5">
                 {artist.role}
               </p>
-              <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5" />
                   {location}
                 </span>
                 {artist.from && (
-                  <span className="text-muted-foreground/50">
+                  <span className="text-muted-foreground/40">
                     From {artist.from}
                   </span>
                 )}
@@ -153,7 +164,7 @@ export default function ArtistProfilePage({
           </div>
 
           {/* Actions */}
-          <div className="flex gap-2.5 mt-5 sm:mt-6">
+          <div className="flex gap-2 mt-5">
             <Link
               href="/messages"
               className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
@@ -161,6 +172,10 @@ export default function ArtistProfilePage({
               <MessageCircle className="w-4 h-4" />
               Message
             </Link>
+            <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
+              <Heart className="w-4 h-4" />
+              <span className="hidden sm:inline">Save</span>
+            </button>
           </div>
         </motion.div>
 
@@ -169,7 +184,7 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease }}
-          className="mt-8"
+          className="mt-7"
         >
           <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/80">
             {artist.bio}
@@ -181,12 +196,12 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25, ease }}
-          className="mt-5 flex flex-wrap gap-2"
+          className="mt-4 flex flex-wrap gap-1.5"
         >
           {artist.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1.5 rounded-full bg-muted/70 text-xs sm:text-sm text-muted-foreground"
+              className="px-3 py-1 rounded-full bg-muted/60 text-xs sm:text-sm text-muted-foreground/70"
             >
               {tag}
             </span>
@@ -204,14 +219,16 @@ export default function ArtistProfilePage({
             {socialLinks.map(([platform, handle]) => (
               <div
                 key={platform}
-                className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/40 border border-border/30 text-sm"
+                className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/30 border border-border/20 text-sm hover:bg-muted/50 transition-colors cursor-pointer"
               >
-                <SocialIcon platform={platform} />
+                <div className="w-8 h-8 rounded-lg bg-muted/60 flex items-center justify-center flex-shrink-0">
+                  <SocialIcon platform={platform} />
+                </div>
                 <div className="min-w-0">
-                  <div className="text-[11px] text-muted-foreground/50 uppercase tracking-wider">
+                  <div className="text-[10px] text-muted-foreground/40 uppercase tracking-wider">
                     {formatPlatformName(platform)}
                   </div>
-                  <div className="text-foreground/80 truncate text-xs">
+                  <div className="text-foreground/70 truncate text-xs">
                     {handle}
                   </div>
                 </div>
@@ -228,19 +245,19 @@ export default function ArtistProfilePage({
             transition={{ duration: 0.5, delay: 0.35, ease }}
             className="mt-8"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-4">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-3">
               Work
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {artist.workSamples.map((sample, i) => (
                 <div
                   key={i}
-                  className="aspect-[4/3] rounded-xl overflow-hidden bg-muted"
+                  className="group aspect-[4/3] rounded-xl overflow-hidden bg-muted cursor-pointer"
                 >
                   <img
                     src={sample.src}
                     alt={sample.alt}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
@@ -254,7 +271,7 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4, ease }}
-          className="mt-8 flex items-center gap-2 text-xs text-muted-foreground/40"
+          className="mt-8 flex items-center gap-2 text-xs text-muted-foreground/35"
         >
           <Calendar className="w-3.5 h-3.5" />
           Member since {joinDate}
@@ -266,12 +283,12 @@ export default function ArtistProfilePage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45, ease }}
-            className="mt-10 pt-8 border-t border-border/30"
+            className="mt-10 pt-8 border-t border-border/20"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-5">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-4">
               Similar Creatives
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
               {similar.map((a) => (
                 <ArtistCard key={a.id} artist={a} />
               ))}

@@ -8,7 +8,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/30">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border/20">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           <a href="/" className="flex items-center">
@@ -56,7 +56,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden border-t border-border/30 bg-background/95 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-border/20 bg-background/95 backdrop-blur-xl"
           >
             <nav className="flex flex-col gap-0.5 p-4">
               {[

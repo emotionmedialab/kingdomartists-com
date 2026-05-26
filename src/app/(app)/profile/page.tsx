@@ -15,6 +15,7 @@ import {
   LogOut,
   Bell,
   Shield,
+  ChevronRight,
 } from "lucide-react";
 import { VerifiedBadge } from "@/components/app/verified-badge";
 import { CURRENT_USER } from "@/lib/mock-data";
@@ -58,7 +59,7 @@ export default function ProfilePage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease }}
-        className="relative h-40 sm:h-56 bg-muted overflow-hidden"
+        className="relative h-36 sm:h-48 bg-muted overflow-hidden"
       >
         <img
           src={user.banner}
@@ -74,13 +75,13 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease }}
-          className="-mt-14 sm:-mt-18 relative"
+          className="-mt-12 sm:-mt-16 relative"
         >
-          <div className="flex items-end gap-4 sm:gap-6">
+          <div className="flex items-end gap-4 sm:gap-5">
             <img
               src={user.image}
               alt={user.name}
-              className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-background shadow-lg"
+              className="w-22 h-22 sm:w-28 sm:h-28 rounded-2xl object-cover border-4 border-background shadow-lg"
             />
             <div className="flex-1 pb-1">
               <h1 className="font-[family-name:var(--font-heading)] text-xl sm:text-2xl font-medium flex items-center gap-2">
@@ -99,7 +100,7 @@ export default function ProfilePage() {
               {location}
             </span>
             {user.from && (
-              <span className="text-muted-foreground/50">
+              <span className="text-muted-foreground/40">
                 From {user.from}
               </span>
             )}
@@ -107,7 +108,7 @@ export default function ProfilePage() {
 
           <Link
             href="/onboarding"
-            className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-border/60 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
+            className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]"
           >
             <Edit3 className="w-3.5 h-3.5" />
             Edit Profile
@@ -131,12 +132,12 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25, ease }}
-          className="mt-4 flex flex-wrap gap-2"
+          className="mt-4 flex flex-wrap gap-1.5"
         >
           {user.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1.5 rounded-full bg-muted/70 text-xs text-muted-foreground"
+              className="px-3 py-1 rounded-full bg-muted/60 text-xs text-muted-foreground/70"
             >
               {tag}
             </span>
@@ -154,14 +155,16 @@ export default function ProfilePage() {
             {socialLinks.map(([platform, handle]) => (
               <div
                 key={platform}
-                className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/40 border border-border/30 text-sm"
+                className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/30 border border-border/20 text-sm"
               >
-                <SocialIcon platform={platform} />
+                <div className="w-8 h-8 rounded-lg bg-muted/60 flex items-center justify-center flex-shrink-0">
+                  <SocialIcon platform={platform} />
+                </div>
                 <div className="min-w-0">
-                  <div className="text-[11px] text-muted-foreground/50 uppercase tracking-wider capitalize">
+                  <div className="text-[10px] text-muted-foreground/40 uppercase tracking-wider capitalize">
                     {platform}
                   </div>
-                  <div className="text-foreground/80 truncate text-xs">
+                  <div className="text-foreground/70 truncate text-xs">
                     {handle}
                   </div>
                 </div>
@@ -178,19 +181,19 @@ export default function ProfilePage() {
             transition={{ duration: 0.5, delay: 0.35, ease }}
             className="mt-8"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-4">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-3">
               Your Work
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {user.workSamples.map((sample, i) => (
                 <div
                   key={i}
-                  className="aspect-[4/3] rounded-xl overflow-hidden bg-muted"
+                  className="group aspect-[4/3] rounded-xl overflow-hidden bg-muted cursor-pointer"
                 >
                   <img
                     src={sample.src}
                     alt={sample.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
@@ -204,31 +207,36 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4, ease }}
-          className="mt-10 pt-8 border-t border-border/30"
+          className="mt-10 pt-8 border-t border-border/20"
         >
-          <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-3">
             Settings
           </h2>
-          <div className="space-y-1">
+          <div className="rounded-2xl border border-border/30 overflow-hidden divide-y divide-border/20">
             {settingsLinks.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-colors"
+                className="flex items-center gap-3 p-3.5 hover:bg-muted/30 transition-colors"
               >
-                <item.icon className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm">{item.label}</span>
+                <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center">
+                  <item.icon className="w-4 h-4 text-muted-foreground/60" />
+                </div>
+                <span className="text-sm flex-1">{item.label}</span>
+                <ChevronRight className="w-4 h-4 text-muted-foreground/30" />
               </Link>
             ))}
-            <button className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-colors w-full text-left text-destructive">
-              <LogOut className="w-4 h-4" />
-              <span className="text-sm">Sign Out</span>
+            <button className="flex items-center gap-3 p-3.5 hover:bg-red-50 transition-colors w-full text-left">
+              <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center">
+                <LogOut className="w-4 h-4 text-destructive" />
+              </div>
+              <span className="text-sm text-destructive">Sign Out</span>
             </button>
           </div>
         </motion.div>
 
         {/* Member since */}
-        <div className="mt-8 flex items-center gap-2 text-xs text-muted-foreground/40">
+        <div className="mt-8 flex items-center gap-2 text-xs text-muted-foreground/35">
           <Calendar className="w-3.5 h-3.5" />
           Member since {joinDate}
         </div>
