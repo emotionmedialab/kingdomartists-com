@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, Sparkles, ArrowRight, Users } from "lucide-react";
 import { ArtistCard } from "@/components/app/artist-card";
 import { MOCK_ARTISTS, CATEGORIES } from "@/lib/mock-data";
+import { getAllArtists } from "@/lib/artist-store";
 import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -12,13 +13,18 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function DiscoverPage() {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [artists, setArtists] = useState(MOCK_ARTISTS);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const featured = MOCK_ARTISTS.filter((a) => a.featured);
+  useEffect(() => {
+    setArtists(getAllArtists());
+  }, []);
+
+  const featured = artists.filter((a) => a.featured);
 
   const filtered = useMemo(() => {
-    let results = MOCK_ARTISTS;
+    let results = artists;
     if (selectedCategory) {
       results = results.filter((a) => a.category === selectedCategory);
     }
@@ -34,7 +40,7 @@ export default function DiscoverPage() {
       );
     }
     return results;
-  }, [query, selectedCategory]);
+  }, [query, selectedCategory, artists]);
 
   const activeCategoryLabel = CATEGORIES.find(
     (c) => c.slug === selectedCategory

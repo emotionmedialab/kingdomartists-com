@@ -19,6 +19,7 @@ import {
 import { VerifiedBadge } from "@/components/app/verified-badge";
 import { ArtistCard } from "@/components/app/artist-card";
 import { MOCK_ARTISTS } from "@/lib/mock-data";
+import { getAllArtists, getArtistByUsername } from "@/lib/artist-store";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -62,7 +63,7 @@ export default function ArtistProfilePage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = use(params);
-  const artist = MOCK_ARTISTS.find((a) => a.username === username);
+  const artist = getArtistByUsername(username);
 
   if (!artist) {
     return (
@@ -89,7 +90,7 @@ export default function ArtistProfilePage({
   const socialLinks = Object.entries(artist.links).filter(
     ([, v]) => v
   ) as [string, string][];
-  const similar = MOCK_ARTISTS.filter(
+  const similar = getAllArtists().filter(
     (a) => a.category === artist.category && a.id !== artist.id
   ).slice(0, 4);
   const joinDate = new Date(artist.joinedAt).toLocaleDateString("en-US", {
