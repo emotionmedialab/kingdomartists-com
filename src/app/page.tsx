@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NavbarV2 } from "@/components/landing/navbar-v2";
 import { HeroV2 } from "@/components/landing/hero-v2";
 import { CreativeTickerV2 } from "@/components/landing/creative-ticker-v2";
@@ -15,7 +16,9 @@ export default function Home() {
         <CreativeTickerV2 />
         <ProblemSection />
         <FoundingSection />
-        <WaitlistV2 />
+        <Suspense>
+          <WaitlistV2 />
+        </Suspense>
       </main>
       <FooterV2 />
     </>
