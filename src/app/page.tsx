@@ -1,31 +1,25 @@
-import { Navbar } from "@/components/landing/navbar";
-import { Hero } from "@/components/landing/hero";
-import { CreativeTypeTicker } from "@/components/landing/creative-type-ticker";
-import { FeaturedArtists } from "@/components/landing/featured-artists";
-import { CommunityShowcase } from "@/components/landing/community-showcase";
-import { HowItWorks } from "@/components/landing/how-it-works";
-import { QuoteBreak } from "@/components/landing/quote-break";
-import { Mission } from "@/components/landing/mission";
-import { WhatsComing } from "@/components/landing/whats-coming";
-import { Waitlist } from "@/components/landing/waitlist";
-import { Footer } from "@/components/landing/footer";
+import { NavbarV2 } from "@/components/landing/navbar-v2";
+import { HeroV2 } from "@/components/landing/hero-v2";
+import { CreativeTickerV2 } from "@/components/landing/creative-ticker-v2";
+import { VSLSection } from "@/components/landing/vsl-section";
+import { ProblemSection } from "@/components/landing/problem-section";
+import { FoundingSection } from "@/components/landing/founding-section";
+import { WaitlistV2 } from "@/components/landing/waitlist-v2";
+import { FooterV2 } from "@/components/landing/footer-v2";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <NavbarV2 />
       <main>
-        <Hero />
-        <CreativeTypeTicker />
-        <FeaturedArtists />
-        <CommunityShowcase />
-        <HowItWorks />
-        <QuoteBreak />
-        <Mission />
-        <WhatsComing />
-        <Waitlist />
+        <HeroV2 />
+        <CreativeTickerV2 />
+        <VSLSection />
+        <ProblemSection />
+        <FoundingSection />
+        <WaitlistV2 />
       </main>
-      <Footer />
+      <FooterV2 />
     </>
   );
 }
