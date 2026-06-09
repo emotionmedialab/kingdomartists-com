@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
-  { value: "Thousands", label: "of Kingdom creatives building in isolation" },
-  { value: "Zero", label: "platforms designed for faith-driven creatives" },
-  { value: "One", label: "community to change that — and you can shape it" },
+  { value: "Thousands", label: "of creatives carrying Kingdom gifts alone" },
+  { value: "Zero", label: "platforms built for creatives who carry the Kingdom" },
+  { value: "One", label: "community changing that — and you're shaping it" },
 ];
 
 export function ProblemSection() {
@@ -39,10 +39,10 @@ export function ProblemSection() {
           transition={{ duration: 0.7, delay: 0.15, ease }}
           className="mt-6 sm:mt-8 text-center text-foreground/40 text-[15px] sm:text-lg max-w-2xl mx-auto leading-relaxed text-balance"
         >
-          There are musicians who worship in studios alone, filmmakers with Kingdom
-          visions and nobody to build with, designers whose best work never gets
-          seen by the people who need it most. The creative gift is everywhere in
-          the body of Christ — but the connections aren&apos;t.
+          Musicians worshipping in studios alone. Filmmakers with
+          Kingdom visions and nobody to build with. Designers whose
+          best work never reaches the people who need it most.
+          The gift is everywhere — the connections aren&apos;t.
         </motion.p>
 
         {/* Until now */}

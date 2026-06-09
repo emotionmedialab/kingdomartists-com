@@ -5,14 +5,6 @@ import { ArrowRight } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const proofAvatars = [
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=60&h=60&fit=crop&crop=face",
-];
-
 export function HeroV2() {
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
@@ -60,9 +52,9 @@ export function HeroV2() {
         >
           You&apos;ve been the only creative in the room long enough.
           <br className="hidden sm:block" />
-          Join 300 founding members building the first home
+          We&apos;re building the first home for Kingdom creatives
           <br className="hidden sm:block" />
-          for Kingdom creatives. Invite only.
+          — and handpicking the 300 who shape it.
         </motion.p>
 
         {/* CTA */}
@@ -81,28 +73,15 @@ export function HeroV2() {
           </a>
         </motion.div>
 
-        {/* Social proof */}
-        <motion.div
+        {/* Invite mechanic teaser */}
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-8 sm:mt-12 flex items-center justify-center gap-3"
+          className="mt-8 sm:mt-12 text-xs sm:text-sm text-foreground/30"
         >
-          <div className="flex -space-x-2">
-            {proofAvatars.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-background object-cover"
-              />
-            ))}
-          </div>
-          <span className="text-sm text-foreground/35">
-            <span className="font-medium text-foreground/60">800+</span> creatives
-            on the waitlist
-          </span>
-        </motion.div>
+          Every founding member gets <span className="text-foreground/55 font-medium">10 invite codes</span> to share.
+        </motion.p>
       </div>
 
       {/* Scroll line */}

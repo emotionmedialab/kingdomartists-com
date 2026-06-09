@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Crown, Shield, Zap, Star } from "lucide-react";
+import { Crown, Shield, Zap, Star, Users } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -10,25 +10,31 @@ const perks = [
     icon: Crown,
     title: "Lifetime Free Access",
     description:
-      "Every feature we ever build. Every tool, every update — yours forever. No subscription, no catch. Founding members never pay.",
+      "Every feature we ever build — yours from day one. Founding members are locked in before pricing even exists.",
   },
   {
     icon: Shield,
     title: "Exclusive Golden Check",
     description:
-      "A founder-only verification badge that will never be available again. The 300 who build with us from day one carry it forever.",
+      "A founder-only badge that will never be available again. The 300 who were here from day one carry it forever.",
   },
   {
     icon: Zap,
     title: "First Access to Everything",
     description:
-      "Beta features, new tools, premium capabilities — founders test it all first. Your feedback shapes what millions will eventually use.",
+      "Beta features, new tools, premium drops — founders test it all first. Your feedback shapes what everyone else eventually gets.",
   },
   {
     icon: Star,
     title: "Creative Resource Kit",
     description:
       "A curated toolkit built for Kingdom creatives — templates, assets, and resources to elevate your craft from the moment you join.",
+  },
+  {
+    icon: Users,
+    title: "10 Invite Codes",
+    description:
+      "You choose who gets in next. Every founder gets 10 personal invite codes to hand to the creatives they believe in.",
   },
 ];
 
@@ -51,9 +57,9 @@ export function FoundingSection() {
             The Founding 300
           </h2>
           <p className="mt-4 sm:mt-5 text-foreground/40 text-[15px] sm:text-lg max-w-xl mx-auto leading-relaxed text-balance">
-            We&apos;re not launching to everyone. We&apos;re starting with 300 creatives
-            who will shape this platform from the ground up. This isn&apos;t early access
-            — it&apos;s ownership of what comes next.
+            We&apos;re not launching to everyone. We&apos;re starting with 300
+            creatives who will shape this from the ground up. This isn&apos;t
+            early access — it&apos;s a seat at the table.
           </p>
         </motion.div>
 

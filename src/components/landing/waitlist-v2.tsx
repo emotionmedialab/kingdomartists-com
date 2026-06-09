@@ -6,14 +6,6 @@ import { ArrowRight, Check, Loader2, Sparkles, Lock, Send } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const proofAvatars = [
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=60&h=60&fit=crop&crop=face",
-];
-
 // Mock valid invite codes — replace with real backend validation
 const VALID_CODES = ["KINGDOM300", "FOUNDING", "CREATORS", "KA2026"];
 
@@ -385,28 +377,8 @@ export function WaitlistV2() {
                     </button>
                   </div>
 
-                  {/* Social proof */}
-                  <div className="mt-6 flex items-center justify-center gap-2.5">
-                    <div className="flex -space-x-1.5">
-                      {proofAvatars.map((src, i) => (
-                        <img
-                          key={i}
-                          src={src}
-                          alt=""
-                          className="w-6 h-6 rounded-full border-2 border-foreground/80 object-cover"
-                        />
-                      ))}
-                    </div>
-                    <span className="text-background/25 text-xs">
-                      <span className="text-background/50 font-medium">
-                        800+
-                      </span>{" "}
-                      requests submitted
-                    </span>
-                  </div>
-
-                  <p className="mt-4 text-[11px] text-background/15">
-                    We review every request. No spam, no bots, just creatives.
+                  <p className="mt-5 text-[11px] text-background/15">
+                    We read every request personally. No algorithms, no bots — just us.
                   </p>
                 </motion.form>
               )}
