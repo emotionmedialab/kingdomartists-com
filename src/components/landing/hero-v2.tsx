@@ -35,7 +35,7 @@ export function HeroV2() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.03] text-[11px] sm:text-xs tracking-[0.15em] uppercase text-foreground/50 font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Founding Members Only — 300 Spots
+            Invite Only — 300 Founding Spots
           </span>
         </motion.div>
 
@@ -62,7 +62,7 @@ export function HeroV2() {
           <br className="hidden sm:block" />
           Join 300 founding members building the first home
           <br className="hidden sm:block" />
-          for Kingdom creatives — free, forever.
+          for Kingdom creatives. Invite only.
         </motion.p>
 
         {/* CTA */}
