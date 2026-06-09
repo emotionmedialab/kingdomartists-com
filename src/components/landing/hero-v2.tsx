@@ -27,7 +27,7 @@ export function HeroV2() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.03] text-[11px] sm:text-xs tracking-[0.15em] uppercase text-foreground/50 font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Invite Only — 300 Founding Spots
+            Accepting Applications — 300 Founding Spots
           </span>
         </motion.div>
 
@@ -68,19 +68,19 @@ export function HeroV2() {
             href="#join"
             className="group inline-flex items-center justify-center gap-2.5 bg-foreground text-background px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-[15px] font-medium hover:opacity-90 transition-all active:scale-[0.97] shadow-lg shadow-foreground/10"
           >
-            Claim Your Founding Spot
+            Apply for Founding Access
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
         </motion.div>
 
-        {/* Invite mechanic teaser */}
+        {/* Referral teaser */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mt-8 sm:mt-12 text-xs sm:text-sm text-foreground/30"
         >
-          Every founding member gets <span className="text-foreground/55 font-medium">10 invite codes</span> to share.
+          Accepted members get a <span className="text-foreground/55 font-medium">personal referral link</span> to bring others in.
         </motion.p>
       </div>
 

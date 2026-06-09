@@ -32,9 +32,9 @@ const perks = [
   },
   {
     icon: Users,
-    title: "10 Invite Codes",
+    title: "Your Own Referral Link",
     description:
-      "You choose who gets in next. Every founder gets 10 personal invite codes to hand to the creatives they believe in.",
+      "You choose who gets in next. Every accepted member gets a personal link — anyone who clicks it skips the line.",
   },
 ];
 
@@ -131,7 +131,7 @@ export function FoundingSection() {
             href="#join"
             className="inline-flex items-center justify-center gap-2 border-2 border-foreground/10 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-foreground hover:text-background transition-all duration-300 active:scale-[0.97]"
           >
-            Claim Your Spot
+            Apply Now
           </a>
         </motion.div>
       </div>

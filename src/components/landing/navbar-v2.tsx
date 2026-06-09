@@ -37,7 +37,7 @@ export function NavbarV2() {
               href="#join"
               className="text-sm font-medium bg-foreground text-background px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity active:scale-[0.97]"
             >
-              Claim Your Spot
+              Apply Now
             </a>
           </nav>
 
@@ -66,7 +66,7 @@ export function NavbarV2() {
                 onClick={() => setOpen(false)}
                 className="text-sm font-medium bg-foreground text-background px-5 py-3 rounded-full text-center hover:opacity-90 transition-opacity"
               >
-                Claim Your Spot
+                Apply Now
               </a>
             </nav>
           </motion.div>
