@@ -129,73 +129,67 @@ export default function ArtistProfilePage({
       </motion.div>
 
       <div className="max-w-3xl mx-auto px-5 sm:px-6">
-        {/* Profile header — avatar overlaps banner, text stays on solid bg */}
+        {/* Avatar — overlaps banner */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease }}
-          className="-mt-16 sm:-mt-20 relative"
+          className="-mt-14 sm:-mt-16 relative z-10"
         >
-          <div className="flex items-end gap-4 sm:gap-5">
-            <img
-              src={artist.image}
-              alt={artist.name}
-              className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover border-4 border-background shadow-xl flex-shrink-0"
-            />
-            {/* Desktop: show name beside avatar, below banner line */}
-            <div className="hidden sm:block flex-1 pb-2">
-              <div className="flex gap-2 mt-5">
-                <Link
-                  href="/messages"
-                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Message
-                </Link>
-                <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
-                  <Heart className="w-4 h-4" />
-                  Save
-                </button>
+          <img
+            src={artist.image}
+            alt={artist.name}
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-[3px] border-background shadow-xl"
+          />
+        </motion.div>
+
+        {/* Name, role, location — fully on solid background with clear space */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease }}
+          className="mt-4"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div>
+              <h1 className="font-[family-name:var(--font-heading)] text-[clamp(1.625rem,5vw,2.25rem)] font-semibold tracking-tight text-foreground leading-tight">
+                {artist.name}
+                {artist.verified && (
+                  <VerifiedBadge className="w-5 h-5 sm:w-6 sm:h-6 inline-block ml-2 align-middle" />
+                )}
+              </h1>
+              <p className="text-foreground/55 text-[15px] sm:text-base mt-1.5 font-medium">
+                {artist.role}
+              </p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-muted-foreground/60">
+                {location && (
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5" />
+                    {location}
+                  </span>
+                )}
+                {artist.from && (
+                  <span className="text-muted-foreground/40">
+                    From {artist.from}
+                  </span>
+                )}
               </div>
             </div>
-          </div>
 
-          {/* Name & info — always on solid background */}
-          <div className="mt-4">
-            <h1 className="font-[family-name:var(--font-heading)] text-[clamp(1.5rem,5vw,2.25rem)] font-semibold tracking-tight text-foreground flex items-center gap-2.5 leading-tight">
-              {artist.name}
-              {artist.verified && <VerifiedBadge className="w-5 h-5 sm:w-6 sm:h-6" />}
-            </h1>
-            <p className="text-foreground/60 text-[15px] sm:text-base mt-1 font-medium">
-              {artist.role}
-            </p>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2.5 text-sm text-muted-foreground/70">
-              {location && (
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5" />
-                  {location}
-                </span>
-              )}
-              {artist.from && (
-                <span className="text-muted-foreground/40">
-                  From {artist.from}
-                </span>
-              )}
+            {/* Actions — desktop inline, mobile full width */}
+            <div className="flex gap-2 flex-shrink-0">
+              <Link
+                href="/messages"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Message
+              </Link>
+              <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
+                <Heart className="w-4 h-4" />
+                <span className="hidden sm:inline">Save</span>
+              </button>
             </div>
-          </div>
-
-          {/* Mobile actions */}
-          <div className="flex gap-2 mt-5 sm:hidden">
-            <Link
-              href="/messages"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
-            >
-              <MessageCircle className="w-4 h-4" />
-              Message
-            </Link>
-            <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
-              <Heart className="w-4 h-4" />
-            </button>
           </div>
         </motion.div>
 
