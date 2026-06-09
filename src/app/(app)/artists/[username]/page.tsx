@@ -105,14 +105,14 @@ export default function ArtistProfilePage({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease }}
-        className="relative h-44 sm:h-56 lg:h-64 bg-muted overflow-hidden"
+        className="relative h-40 sm:h-52 lg:h-60 bg-muted overflow-hidden"
       >
         <img
           src={artist.banner}
           alt=""
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex gap-2">
           <Link
             href="/discover"
@@ -129,53 +129,72 @@ export default function ArtistProfilePage({
       </motion.div>
 
       <div className="max-w-3xl mx-auto px-5 sm:px-6">
-        {/* Profile header */}
+        {/* Profile header — avatar overlaps banner, text stays on solid bg */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease }}
-          className="-mt-14 sm:-mt-18 relative"
+          className="-mt-16 sm:-mt-20 relative"
         >
-          <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-5">
+          <div className="flex items-end gap-4 sm:gap-5">
             <img
               src={artist.image}
               alt={artist.name}
-              className="w-26 h-26 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-background shadow-lg"
+              className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover border-4 border-background shadow-xl flex-shrink-0"
             />
-            <div className="flex-1 pb-1">
-              <h1 className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl font-medium flex items-center gap-2">
-                {artist.name}
-                {artist.verified && <VerifiedBadge className="w-5 h-5" />}
-              </h1>
-              <p className="text-muted-foreground text-sm sm:text-base mt-0.5">
-                {artist.role}
-              </p>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5" />
-                  {location}
-                </span>
-                {artist.from && (
-                  <span className="text-muted-foreground/40">
-                    From {artist.from}
-                  </span>
-                )}
+            {/* Desktop: show name beside avatar, below banner line */}
+            <div className="hidden sm:block flex-1 pb-2">
+              <div className="flex gap-2 mt-5">
+                <Link
+                  href="/messages"
+                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Message
+                </Link>
+                <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
+                  <Heart className="w-4 h-4" />
+                  Save
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-2 mt-5">
+          {/* Name & info — always on solid background */}
+          <div className="mt-4">
+            <h1 className="font-[family-name:var(--font-heading)] text-[clamp(1.5rem,5vw,2.25rem)] font-semibold tracking-tight text-foreground flex items-center gap-2.5 leading-tight">
+              {artist.name}
+              {artist.verified && <VerifiedBadge className="w-5 h-5 sm:w-6 sm:h-6" />}
+            </h1>
+            <p className="text-foreground/60 text-[15px] sm:text-base mt-1 font-medium">
+              {artist.role}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2.5 text-sm text-muted-foreground/70">
+              {location && (
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                  {location}
+                </span>
+              )}
+              {artist.from && (
+                <span className="text-muted-foreground/40">
+                  From {artist.from}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile actions */}
+          <div className="flex gap-2 mt-5 sm:hidden">
             <Link
               href="/messages"
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition-opacity active:scale-[0.97]"
             >
               <MessageCircle className="w-4 h-4" />
               Message
             </Link>
             <button className="inline-flex items-center justify-center gap-2 border border-border/60 px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all active:scale-[0.97]">
               <Heart className="w-4 h-4" />
-              <span className="hidden sm:inline">Save</span>
             </button>
           </div>
         </motion.div>
@@ -185,9 +204,9 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease }}
-          className="mt-7"
+          className="mt-6 sm:mt-8"
         >
-          <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/80">
+          <p className="text-[15px] sm:text-base leading-[1.7] text-foreground/70">
             {artist.bio}
           </p>
         </motion.div>
@@ -197,12 +216,12 @@ export default function ArtistProfilePage({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25, ease }}
-          className="mt-4 flex flex-wrap gap-1.5"
+          className="mt-5 flex flex-wrap gap-2"
         >
           {artist.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 rounded-full bg-muted/60 text-xs sm:text-sm text-muted-foreground/70"
+              className="px-3.5 py-1.5 rounded-full bg-muted/50 text-xs sm:text-[13px] text-foreground/60 font-medium"
             >
               {tag}
             </span>
@@ -215,21 +234,21 @@ export default function ArtistProfilePage({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease }}
-            className="mt-6 grid grid-cols-2 gap-2"
+            className="mt-6 grid grid-cols-2 gap-2.5"
           >
             {socialLinks.map(([platform, handle]) => (
               <div
                 key={platform}
-                className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/30 border border-border/20 text-sm hover:bg-muted/50 transition-colors cursor-pointer"
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-muted/25 border border-border/15 text-sm hover:bg-muted/40 hover:border-border/30 transition-all cursor-pointer group"
               >
-                <div className="w-8 h-8 rounded-lg bg-muted/60 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-foreground/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-foreground/[0.1] transition-colors">
                   <SocialIcon platform={platform} />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[10px] text-muted-foreground/40 uppercase tracking-wider">
+                  <div className="text-[10px] text-muted-foreground/50 uppercase tracking-wider font-medium">
                     {formatPlatformName(platform)}
                   </div>
-                  <div className="text-foreground/70 truncate text-xs">
+                  <div className="text-foreground/70 truncate text-[13px] mt-0.5">
                     {handle}
                   </div>
                 </div>
@@ -246,7 +265,7 @@ export default function ArtistProfilePage({
             transition={{ duration: 0.5, delay: 0.35, ease }}
             className="mt-8"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-3">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg sm:text-xl font-semibold tracking-tight mb-4">
               Work
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -286,7 +305,7 @@ export default function ArtistProfilePage({
             transition={{ duration: 0.5, delay: 0.45, ease }}
             className="mt-10 pt-8 border-t border-border/20"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-medium mb-4">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg sm:text-xl font-semibold tracking-tight mb-4">
               Similar Creatives
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
