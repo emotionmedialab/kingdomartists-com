@@ -95,7 +95,7 @@ export function ApplyFlow() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [craft, setCraft] = useState("");
+  const [crafts, setCrafts] = useState<string[]>([]);
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [portfolio, setPortfolio] = useState("");
@@ -150,8 +150,8 @@ export function ApplyFlow() {
       return "We need a valid email to reach you.";
     if (current === "phone" && phone.trim().replace(/\D/g, "").length < 7)
       return "We need a phone number to reach you.";
-    if (current === "craft" && !craft)
-      return "Choose the one closest to your gift.";
+    if (current === "craft" && crafts.length === 0)
+      return "Choose at least one.";
     return "";
   }
 
@@ -253,7 +253,7 @@ export function ApplyFlow() {
           name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
-          creative_type: craft,
+          creative_type: crafts.join(", "),
           instagram: instagram.trim() || null,
           tiktok: tiktok.trim() || null,
           portfolio_url: portfolio.trim() || null,
@@ -461,8 +461,8 @@ export function ApplyFlow() {
                 }}
               >
                 {vouched
-                  ? `${referrerName} put their name on yours — you're at the front of the line. A few questions, then one we want to hear in your own voice.`
-                  : "300 spots for creatives who build with God, for God. A few questions, then one we want to hear in your own voice. A real person reviews everything."}
+                  ? `${referrerName} put their name on yours. You're at the front of the line.`
+                  : "300 founding spots. Reviewed personally."}
               </p>
               <button onClick={next} style={primaryBtn}>
                 Begin →
@@ -531,6 +531,7 @@ export function ApplyFlow() {
           {step === "craft" && (
             <QuestionShell
               title="What kind of creative are you?"
+              subtitle="Choose all that apply."
               error={error}
               onNext={next}
               onBack={back}
@@ -546,12 +547,16 @@ export function ApplyFlow() {
                 }}
               >
                 {CREATIVE_TYPES.map((t) => {
-                  const active = craft === t;
+                  const active = crafts.includes(t);
                   return (
                     <button
                       key={t}
                       onClick={() => {
-                        setCraft(t);
+                        setCrafts((prev) =>
+                          prev.includes(t)
+                            ? prev.filter((c) => c !== t)
+                            : [...prev, t]
+                        );
                         setError("");
                       }}
                       style={{
