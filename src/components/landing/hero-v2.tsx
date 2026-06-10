@@ -80,7 +80,7 @@ export function HeroV2() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mt-8 sm:mt-12 text-xs sm:text-sm text-foreground/30"
         >
-          Accepted members get a <span className="text-foreground/55 font-medium">personal referral link</span> to bring others in.
+          Accepted members get a <span className="text-foreground/55 font-medium">personal link</span> to vouch for other creatives.
         </motion.p>
       </div>
 

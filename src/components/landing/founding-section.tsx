@@ -32,9 +32,9 @@ const perks = [
   },
   {
     icon: Users,
-    title: "Your Own Referral Link",
+    title: "Vouch for Other Creatives",
     description:
-      "You choose who gets in next. Every accepted member gets a personal link — anyone who clicks it skips the line.",
+      "You choose who gets in next. Every accepted member gets a personal link — anyone you refer gets fast-tracked to the front.",
   },
 ];
 

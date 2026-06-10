@@ -3,9 +3,25 @@
 import { useState, useEffect, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Loader2, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Loader2, Star } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+function formatReferrerName(ref: string) {
+  // "sarahkim" → "Sarah K." / "david" → "David" / "alec-martin" → "Alec M."
+  const clean = ref.replace(/[-_]/g, " ").trim();
+  const parts = clean.split(/\s+/);
+  if (parts.length === 1) {
+    return parts[0].charAt(0).toUpperCase() + parts[0].slice(1).toLowerCase();
+  }
+  return (
+    parts[0].charAt(0).toUpperCase() +
+    parts[0].slice(1).toLowerCase() +
+    " " +
+    parts[parts.length - 1].charAt(0).toUpperCase() +
+    "."
+  );
+}
 
 export function WaitlistV2() {
   const searchParams = useSearchParams();
@@ -14,17 +30,18 @@ export function WaitlistV2() {
   const [creativeType, setCreativeType] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [referrer, setReferrer] = useState("");
-  const [isReferred, setIsReferred] = useState(false);
-  const [memberNumber] = useState(() => Math.floor(Math.random() * 50 + 48));
+  const [referrerDisplay, setReferrerDisplay] = useState("");
 
-  // Check if they came from a member's referral link: ?ref=alecmartin
+  // Check for referral: ?ref=sarahkim
   useEffect(() => {
     const ref = searchParams.get("ref") || "";
     if (ref) {
       setReferrer(ref);
-      setIsReferred(true);
+      setReferrerDisplay(formatReferrerName(ref));
     }
   }, [searchParams]);
+
+  const isVouched = referrer.length > 0;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -33,9 +50,13 @@ export function WaitlistV2() {
     setStatus("loading");
 
     // TODO: Replace with Supabase insert
-    // If isReferred → auto-accept (status: "accepted", referred_by: referrer)
-    // If NOT referred → pending review (status: "pending")
-    // table: signups { name, email, creative_type, status, referred_by, created_at }
+    // table: applications {
+    //   name, email, creative_type,
+    //   status: "pending",
+    //   vouched_by: referrer || null,
+    //   priority: isVouched ? "high" : "normal",
+    //   created_at
+    // }
     await new Promise((r) => setTimeout(r, 1200));
 
     setStatus("success");
@@ -43,7 +64,6 @@ export function WaitlistV2() {
 
   return (
     <section id="join" className="relative py-20 sm:py-28 lg:py-36">
-      {/* Dark background */}
       <div className="absolute inset-0 bg-foreground rounded-t-[2.5rem] sm:rounded-t-[3.5rem]" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-6 text-center">
@@ -54,15 +74,17 @@ export function WaitlistV2() {
           transition={{ duration: 0.8, ease }}
         >
           <span className="text-[11px] tracking-[0.25em] uppercase text-background/25 font-medium">
-            {isReferred ? "You’ve Been Invited" : "Apply for Early Access"}
+            {isVouched
+              ? `Vouched by ${referrerDisplay}`
+              : "Apply for Early Access"}
           </span>
           <h2 className="font-[family-name:var(--font-heading)] text-[clamp(1.75rem,5vw,3.25rem)] font-medium tracking-tight mt-4 text-background leading-[1.1] text-balance">
-            {isReferred ? (
+            {isVouched ? (
               <>
-                Someone believes in
+                Someone in Kingdom Artists
                 <br />
                 <span className="italic text-background/60">
-                  your creative gift.
+                  believes in your gift.
                 </span>
               </>
             ) : (
@@ -76,9 +98,9 @@ export function WaitlistV2() {
             )}
           </h2>
           <p className="text-background/30 text-sm sm:text-[15px] mt-4 sm:mt-5 max-w-md mx-auto leading-relaxed text-balance">
-            {isReferred
-              ? "You’ve been referred by someone already in Kingdom Artists. Your spot is confirmed — just drop your info below."
-              : "We’re handpicking the first 300 founding members. Apply below and our team will review your application personally."}
+            {isVouched
+              ? `${referrerDisplay} vouched for you — your application has been fast-tracked. Complete it below and our team will review it within 24 hours.`
+              : "We're handpicking the first 300 founding members. Apply below and our team will review your application personally."}
           </p>
         </motion.div>
 
@@ -107,14 +129,15 @@ export function WaitlistV2() {
                   <Check className="w-7 h-7 text-emerald-400" />
                 </motion.div>
                 <div>
-                  {isReferred ? (
+                  {isVouched ? (
                     <>
                       <p className="text-background text-xl font-[family-name:var(--font-heading)] font-medium">
-                        You&apos;re in, {name}.
+                        You&apos;ve been fast-tracked, {name}.
                       </p>
                       <p className="text-background/35 text-sm mt-2 max-w-xs mx-auto">
-                        Welcome to the Kingdom. We&apos;ll send you everything
-                        you need — including your own link to invite others.
+                        {referrerDisplay} put in a good word for you. Our team
+                        will review your application within 24 hours. Watch your
+                        inbox.
                       </p>
                     </>
                   ) : (
@@ -124,23 +147,11 @@ export function WaitlistV2() {
                       </p>
                       <p className="text-background/35 text-sm mt-2 max-w-xs mx-auto">
                         Our team reviews every application personally.
-                        We&apos;ll be in touch soon.
+                        We&apos;ll be in touch.
                       </p>
                     </>
                   )}
                 </div>
-                {isReferred && (
-                  <div className="flex items-center gap-2 mt-1 bg-background/[0.06] px-5 py-2.5 rounded-full">
-                    <Sparkles className="w-4 h-4 text-amber-400" />
-                    <span className="text-background/50 text-sm">
-                      Founding member{" "}
-                      <span className="text-background font-semibold">
-                        #{memberNumber}
-                      </span>{" "}
-                      of 300
-                    </span>
-                  </div>
-                )}
               </motion.div>
             ) : (
               <motion.form
@@ -152,12 +163,12 @@ export function WaitlistV2() {
                 className="max-w-sm mx-auto"
               >
                 <div className="space-y-2.5">
-                  {/* Referred badge */}
-                  {isReferred && (
-                    <div className="flex items-center justify-center gap-2 bg-emerald-500/[0.08] border border-emerald-500/[0.15] rounded-xl px-4 py-3 mb-1">
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400/80 text-sm">
-                        Referred — your spot is confirmed
+                  {/* Vouched badge */}
+                  {isVouched && (
+                    <div className="flex items-center justify-center gap-2 bg-amber-500/[0.06] border border-amber-500/[0.12] rounded-xl px-4 py-3 mb-1">
+                      <Star className="w-4 h-4 text-amber-400" fill="currentColor" />
+                      <span className="text-amber-400/80 text-sm">
+                        Vouched by {referrerDisplay} — fast-tracked
                       </span>
                     </div>
                   )}
@@ -214,14 +225,11 @@ export function WaitlistV2() {
                   >
                     {status === "loading" ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : isReferred ? (
-                      <>
-                        Claim My Founding Spot
-                        <ArrowRight className="w-4 h-4" />
-                      </>
                     ) : (
                       <>
-                        Apply for Founding Access
+                        {isVouched
+                          ? "Complete My Application"
+                          : "Apply for Founding Access"}
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}
@@ -229,9 +237,9 @@ export function WaitlistV2() {
                 </div>
 
                 <p className="mt-4 text-[11px] text-background/12">
-                  {isReferred
-                    ? "No spam. We’ll only reach out about Kingdom Artists."
-                    : "We review every application. No spam, no algorithms — just us."}
+                  {isVouched
+                    ? "Fast-tracked applications are reviewed within 24 hours."
+                    : "We review every application. No algorithms — just us."}
                 </p>
               </motion.form>
             )}
