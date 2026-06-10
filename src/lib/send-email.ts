@@ -3,6 +3,7 @@
 
 const FROM =
   process.env.EMAIL_FROM || "Kingdom Artists <onboarding@resend.dev>";
+const REPLY_TO = process.env.EMAIL_REPLY_TO || "";
 
 export async function sendEmail({
   to,
@@ -25,7 +26,14 @@ export async function sendEmail({
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ from: FROM, to: [to], subject, html, text }),
+      body: JSON.stringify({
+        from: FROM,
+        to: [to],
+        subject,
+        html,
+        text,
+        ...(REPLY_TO ? { reply_to: [REPLY_TO] } : {}),
+      }),
     });
     if (!res.ok) {
       console.error("Resend error:", res.status, await res.text());
