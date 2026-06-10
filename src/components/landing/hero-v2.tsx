@@ -27,7 +27,7 @@ export function HeroV2() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.03] text-[11px] sm:text-xs tracking-[0.15em] uppercase text-foreground/50 font-medium">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Accepting Applications — 300 Founding Spots
+            Now Accepting Applications — 300 Founding Spots
           </span>
         </motion.div>
 
@@ -50,11 +50,11 @@ export function HeroV2() {
           transition={{ duration: 0.9, delay: 0.25, ease }}
           className="mt-6 sm:mt-8 text-[clamp(1rem,2.2vw,1.25rem)] text-foreground/50 max-w-xl mx-auto leading-[1.7] text-balance"
         >
-          You&apos;ve been the only creative in the room long enough.
+          There&apos;s never been a place built for Kingdom creatives.
           <br className="hidden sm:block" />
-          We&apos;re building the first home for Kingdom creatives
+          We&apos;re changing that — starting with the first 300
           <br className="hidden sm:block" />
-          — and handpicking the 300 who shape it.
+          who believe it should exist.
         </motion.p>
 
         {/* CTA */}
@@ -80,7 +80,7 @@ export function HeroV2() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mt-8 sm:mt-12 text-xs sm:text-sm text-foreground/30"
         >
-          Accepted members get a <span className="text-foreground/55 font-medium">personal link</span> to vouch for other creatives.
+          Every accepted member gets a <span className="text-foreground/55 font-medium">personal link</span> to vouch for other creatives.
         </motion.p>
       </div>
 

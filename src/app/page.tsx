@@ -1,26 +1,29 @@
 import { Suspense } from "react";
-import { NavbarV2 } from "@/components/landing/navbar-v2";
-import { HeroV2 } from "@/components/landing/hero-v2";
-import { CreativeTickerV2 } from "@/components/landing/creative-ticker-v2";
-import { ProblemSection } from "@/components/landing/problem-section";
-import { FoundingSection } from "@/components/landing/founding-section";
-import { WaitlistV2 } from "@/components/landing/waitlist-v2";
-import { FooterV2 } from "@/components/landing/footer-v2";
+import { Chrome } from "@/components/landing/v3/chrome";
+import { Hero } from "@/components/landing/v3/hero";
+import { Marquee } from "@/components/landing/v3/marquee";
+import { FamilyScroll } from "@/components/landing/v3/family-scroll";
+import { Problem } from "@/components/landing/v3/problem";
+import { Mandate } from "@/components/landing/v3/mandate";
+import { Platform } from "@/components/landing/v3/platform";
+import { Founding } from "@/components/landing/v3/founding";
+import { Closer } from "@/components/landing/v3/closer";
 
 export default function Home() {
   return (
-    <>
-      <NavbarV2 />
+    <div className="ka-page">
+      <div className="ka-grain" />
+      <Chrome />
       <main>
-        <HeroV2 />
-        <CreativeTickerV2 />
-        <ProblemSection />
-        <FoundingSection />
-        <Suspense>
-          <WaitlistV2 />
-        </Suspense>
+        <Hero />
+        <Marquee />
+        <FamilyScroll />
+        <Problem />
+        <Mandate />
+        <Platform />
+        <Founding />
+        <Closer />
       </main>
-      <FooterV2 />
-    </>
+    </div>
   );
 }

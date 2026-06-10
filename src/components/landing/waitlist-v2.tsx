@@ -49,17 +49,32 @@ export function WaitlistV2() {
 
     setStatus("loading");
 
-    // TODO: Replace with Supabase insert
-    // table: applications {
-    //   name, email, creative_type,
-    //   status: "pending",
-    //   vouched_by: referrer || null,
-    //   priority: isVouched ? "high" : "normal",
-    //   created_at
-    // }
-    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          creative_type: creativeType || null,
+          vouched_by: referrer || null,
+        }),
+      });
 
-    setStatus("success");
+      const data = await res.json();
+
+      if (!res.ok) {
+        // Show error but keep form visible
+        alert(data.error || "Something went wrong. Please try again.");
+        setStatus("idle");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      alert("Network error. Please check your connection and try again.");
+      setStatus("idle");
+    }
   }
 
   return (
@@ -99,8 +114,8 @@ export function WaitlistV2() {
           </h2>
           <p className="text-background/30 text-sm sm:text-[15px] mt-4 sm:mt-5 max-w-md mx-auto leading-relaxed text-balance">
             {isVouched
-              ? `${referrerDisplay} vouched for you — your application has been fast-tracked. Complete it below and our team will review it within 24 hours.`
-              : "We're handpicking the first 300 founding members. Apply below and our team will review your application personally."}
+              ? `${referrerDisplay} put their name behind yours. Your application has been fast-tracked — complete it below and our team will review it within 24 hours.`
+              : "300 spots. Real creatives only. Drop your info and our team will personally review every application."}
           </p>
         </motion.div>
 

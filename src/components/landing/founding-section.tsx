@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Crown, Shield, Zap, Star, Users } from "lucide-react";
 
@@ -10,35 +11,56 @@ const perks = [
     icon: Crown,
     title: "Lifetime Free Access",
     description:
-      "Every feature we ever build — yours from day one. Founding members are locked in before pricing even exists.",
+      "Every feature we ever build — yours. Founding members are locked in before pricing even exists.",
   },
   {
     icon: Shield,
-    title: "Exclusive Golden Check",
+    title: "Exclusive Founder Badge",
     description:
-      "A founder-only badge that will never be available again. The 300 who were here from day one carry it forever.",
+      "A founder-only mark that will never be available again. The 300 who were here first carry it forever.",
   },
   {
     icon: Zap,
     title: "First Access to Everything",
     description:
-      "Beta features, new tools, premium drops — founders test it all first. Your feedback shapes what everyone else eventually gets.",
+      "New tools, features, drops — founders test it first. Your feedback shapes what everyone else gets.",
   },
   {
     icon: Star,
     title: "Creative Resource Kit",
     description:
-      "A curated toolkit built for Kingdom creatives — templates, assets, and resources to elevate your craft from the moment you join.",
+      "A curated toolkit for Kingdom creatives — templates, assets, and resources to elevate your craft from day one.",
   },
   {
     icon: Users,
     title: "Vouch for Other Creatives",
     description:
-      "You choose who gets in next. Every accepted member gets a personal link — anyone you refer gets fast-tracked to the front.",
+      "Every accepted member gets a personal link. Anyone you refer gets fast-tracked. You decide who's next.",
   },
 ];
 
 export function FoundingSection() {
+  const [accepted, setAccepted] = useState(0);
+  const [applied, setApplied] = useState(0);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const res = await fetch("/api/stats");
+        if (res.ok) {
+          const data = await res.json();
+          setAccepted(data.accepted);
+          setApplied(data.applied);
+        }
+      } catch {
+        // Supabase not connected yet — stay at 0
+      }
+    }
+    fetchStats();
+  }, []);
+
+  const spotsRemaining = 300 - accepted;
+
   return (
     <section className="relative py-20 sm:py-28 lg:py-36">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
@@ -57,13 +79,12 @@ export function FoundingSection() {
             The Founding 300
           </h2>
           <p className="mt-4 sm:mt-5 text-foreground/40 text-[15px] sm:text-lg max-w-xl mx-auto leading-relaxed text-balance">
-            We&apos;re not launching to everyone. We&apos;re starting with 300
-            creatives who will shape this from the ground up. This isn&apos;t
-            early access — it&apos;s a seat at the table.
+            We&apos;re not opening the doors to everyone. We&apos;re handpicking
+            300 creatives who will shape what this becomes. If you&apos;re in, you&apos;re in for life.
           </p>
         </motion.div>
 
-        {/* Spots counter */}
+        {/* Live counter */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,8 +97,8 @@ export function FoundingSection() {
               {Array.from({ length: 10 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 h-6 sm:h-8 rounded-full ${
-                    i < 8
+                  className={`w-2 h-6 sm:h-8 rounded-full transition-colors duration-500 ${
+                    i < Math.ceil((accepted / 300) * 10)
                       ? "bg-foreground/80"
                       : "bg-foreground/[0.08]"
                   }`}
@@ -86,10 +107,10 @@ export function FoundingSection() {
             </div>
             <div className="text-left">
               <div className="text-sm sm:text-base font-semibold tracking-tight">
-                247 of 300
+                {accepted} of 300
               </div>
               <div className="text-[11px] sm:text-xs text-foreground/35">
-                spots remaining
+                {accepted === 0 ? "spots open — be the first" : `spots claimed · ${spotsRemaining} left`}
               </div>
             </div>
           </div>

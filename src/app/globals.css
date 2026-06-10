@@ -221,6 +221,134 @@
   animation: glow 4s ease-in-out infinite;
 }
 
+/* ───────── Kingdom Artists v3 — Sacred Modernism ───────── */
+
+@keyframes ka-rise {
+  from { transform: translateY(112%); }
+  to { transform: translateY(0); }
+}
+@keyframes ka-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ka-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(31, 165, 107, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(31, 165, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(31, 165, 107, 0); }
+}
+@keyframes ka-tickpulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes ka-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ka-sweep {
+  0% { transform: translateX(-130%); }
+  55%, 100% { transform: translateX(430%); }
+}
+@keyframes ka-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.ka-page {
+  background: #faf8f4;
+  color: #16140f;
+  overflow-x: clip;
+}
+.ka-page ::selection {
+  background: rgba(184, 135, 43, 0.28);
+}
+
+.ka-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNDAnIGhlaWdodD0nMjQwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzI0MCcgaGVpZ2h0PScyNDAnIGZpbHRlcj0ndXJsKCNuKScvPjwvc3ZnPg==");
+}
+
+.ka-sticky-col {
+  position: static;
+}
+@media (min-width: 900px) {
+  .ka-sticky-col {
+    position: sticky;
+    top: 22vh;
+    align-self: start;
+  }
+}
+
+.ka-nav-pill {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.ka-nav-pill:hover {
+  background: #16140f !important;
+  color: #faf8f4 !important;
+}
+
+.ka-cta {
+  transition: background 0.3s ease;
+}
+.ka-cta:hover {
+  background: #2c2820 !important;
+}
+
+.ka-card {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.ka-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(22, 20, 15, 0.45) !important;
+  box-shadow: 0 24px 48px -32px rgba(22, 20, 15, 0.3);
+}
+.ka-card-dark {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.ka-card-dark:hover {
+  transform: translateY(-6px);
+  border-color: rgba(224, 180, 92, 0.95) !important;
+  box-shadow: 0 28px 56px -28px rgba(224, 180, 92, 0.45);
+}
+
+.ka-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.ka-input:focus {
+  border-bottom-color: #e0b45c !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 18px 36px -22px rgba(224, 180, 92, 0.5);
+}
+.ka-input::placeholder {
+  color: rgba(244, 239, 229, 0.32);
+}
+
+.ka-submit {
+  transition: background 0.3s ease;
+}
+.ka-submit:hover {
+  background: #ffffff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ka-page *,
+  .ka-page *::before,
+  .ka-page *::after {
+    animation-duration: 0.001s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
 .film-grain::after {
   content: "";
   position: absolute;

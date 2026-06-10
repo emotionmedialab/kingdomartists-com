@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
-  { value: "Thousands", label: "of creatives carrying Kingdom gifts alone" },
-  { value: "Zero", label: "platforms built for creatives who carry the Kingdom" },
-  { value: "One", label: "community changing that — and you're shaping it" },
+  { value: "Thousands", label: "of Kingdom creatives with no place to connect" },
+  { value: "Zero", label: "platforms built for people who carry this calling" },
+  { value: "One", label: "community about to change that — and you're shaping it" },
 ];
 
 export function ProblemSection() {
@@ -39,10 +39,10 @@ export function ProblemSection() {
           transition={{ duration: 0.7, delay: 0.15, ease }}
           className="mt-6 sm:mt-8 text-center text-foreground/40 text-[15px] sm:text-lg max-w-2xl mx-auto leading-relaxed text-balance"
         >
-          Musicians worshipping in studios alone. Filmmakers with
-          Kingdom visions and nobody to build with. Designers whose
-          best work never reaches the people who need it most.
-          The gift is everywhere — the connections aren&apos;t.
+          Producers making beats in bedrooms with nobody to send them to.
+          Filmmakers carrying visions they can&apos;t build alone.
+          Designers creating for brands that don&apos;t share their values.
+          The talent is everywhere — the community doesn&apos;t exist yet.
         </motion.p>
 
         {/* Until now */}
