@@ -11,6 +11,7 @@ import {
   Clock,
   Copy,
   ExternalLink,
+  ChevronDown,
   Loader2,
   ArrowLeft,
   Inbox,
@@ -39,6 +40,7 @@ export default function ApplicationsPage() {
   const [search, setSearch] = useState("");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Check for saved admin key
   useEffect(() => {
@@ -317,206 +319,201 @@ export default function ApplicationsPage() {
           </p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {filtered.map((app) => (
-            <div
-              key={app.id}
-              className={cn(
-                "rounded-2xl border p-4 sm:p-5 transition-all",
-                app.priority === "high" && app.status === "pending"
-                  ? "bg-amber-50/50 border-amber-200/40"
-                  : "bg-background border-foreground/[0.06]",
-                app.status === "rejected" && "opacity-50"
-              )}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  {/* Name + badges */}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm font-semibold tracking-tight">
+        <div className="rounded-2xl border border-foreground/[0.08] overflow-hidden bg-background">
+          {/* table header */}
+          <div className="hidden sm:grid grid-cols-[1.4fr_1.2fr_0.9fr_0.9fr_0.7fr_28px] gap-3 px-5 py-3 bg-foreground/[0.03] border-b border-foreground/[0.06] text-[10.5px] font-semibold uppercase tracking-wider text-foreground/35">
+            <span>Applicant</span>
+            <span>Craft</span>
+            <span>Vouched By</span>
+            <span>Applied</span>
+            <span>Status</span>
+            <span />
+          </div>
+
+          {filtered.map((app) => {
+            const open = expandedId === app.id;
+            return (
+              <div key={app.id} className="border-b border-foreground/[0.05] last:border-b-0">
+                {/* row */}
+                <button
+                  onClick={() => setExpandedId(open ? null : app.id)}
+                  className={cn(
+                    "w-full text-left grid grid-cols-[1fr_28px] sm:grid-cols-[1.4fr_1.2fr_0.9fr_0.9fr_0.7fr_28px] gap-3 items-center px-5 py-3.5 transition-colors hover:bg-foreground/[0.025]",
+                    open && "bg-foreground/[0.025]",
+                    app.status === "rejected" && "opacity-45"
+                  )}
+                >
+                  <span className="min-w-0">
+                    <span className="block text-sm font-semibold tracking-tight truncate">
                       {app.name}
-                    </h3>
-                    {app.priority === "high" && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-medium">
-                        <Star className="w-3 h-3" fill="currentColor" />
-                        Vouched
-                      </span>
+                      {app.priority === "high" && (
+                        <Star className="inline w-3 h-3 ml-1.5 -mt-0.5 text-amber-500" fill="currentColor" />
+                      )}
+                    </span>
+                    <span className="block text-xs text-foreground/40 truncate">{app.email}</span>
+                  </span>
+                  <span className="hidden sm:block text-xs text-foreground/55 truncate">
+                    {app.creative_type || "—"}
+                  </span>
+                  <span className="hidden sm:block text-xs truncate">
+                    {app.vouched_by ? (
+                      <span className="text-amber-600">{app.vouched_by}</span>
+                    ) : (
+                      <span className="text-foreground/25">—</span>
+                    )}
+                  </span>
+                  <span className="hidden sm:block text-xs text-foreground/40">
+                    {new Date(app.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  </span>
+                  <span className="hidden sm:block">
+                    {app.status === "pending" && (
+                      <span className="inline-flex px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-medium">Pending</span>
                     )}
                     {app.status === "accepted" && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-medium">
-                        <Check className="w-3 h-3" />
-                        Accepted
-                      </span>
+                      <span className="inline-flex px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-medium">Accepted</span>
                     )}
                     {app.status === "rejected" && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-[10px] font-medium">
-                        <X className="w-3 h-3" />
-                        Rejected
-                      </span>
+                      <span className="inline-flex px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-[10px] font-medium">Rejected</span>
                     )}
-                  </div>
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "w-4 h-4 text-foreground/30 transition-transform duration-300",
+                      open && "rotate-180"
+                    )}
+                  />
+                </button>
 
-                  {/* Details */}
-                  <div className="flex items-center gap-3 mt-1.5 text-xs text-foreground/40 flex-wrap">
-                    <span>{app.email}</span>
-                    {app.phone && (
-                      <>
-                        <span className="text-foreground/15">·</span>
-                        <span>{app.phone}</span>
-                      </>
-                    )}
-                    {app.creative_type && (
-                      <>
-                        <span className="text-foreground/15">·</span>
-                        <span>{app.creative_type}</span>
-                      </>
-                    )}
-                    {app.vouched_by && (
-                      <>
-                        <span className="text-foreground/15">·</span>
-                        <span className="text-amber-600">
-                          Vouched by {app.vouched_by}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Socials + work link */}
-                  {(app.instagram || app.tiktok || app.portfolio_url) && (
-                    <div className="flex items-center gap-3 mt-2 text-xs flex-wrap">
-                      {app.instagram && (
-                        <a
-                          href={`https://instagram.com/${app.instagram.replace(/^@/, "")}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          IG {app.instagram}
-                        </a>
-                      )}
-                      {app.tiktok && (
-                        <a
-                          href={`https://tiktok.com/@${app.tiktok.replace(/^@/, "")}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          TikTok {app.tiktok}
-                        </a>
-                      )}
-                      {app.portfolio_url && (
-                        <a
-                          href={
-                            app.portfolio_url.startsWith("http")
+                {/* detail panel */}
+                {open && (
+                  <div className="px-5 pb-5 pt-1 bg-foreground/[0.015]">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 mb-4">
+                      {[
+                        { label: "Email", value: app.email, href: `mailto:${app.email}` },
+                        { label: "Phone", value: app.phone, href: app.phone ? `tel:${app.phone}` : undefined },
+                        { label: "Craft", value: app.creative_type },
+                        {
+                          label: "Instagram",
+                          value: app.instagram,
+                          href: app.instagram ? `https://instagram.com/${app.instagram.replace(/^@/, "")}` : undefined,
+                        },
+                        {
+                          label: "TikTok",
+                          value: app.tiktok,
+                          href: app.tiktok ? `https://tiktok.com/@${app.tiktok.replace(/^@/, "")}` : undefined,
+                        },
+                        {
+                          label: "Work / Portfolio",
+                          value: app.portfolio_url?.replace(/^https?:\/\//, ""),
+                          href: app.portfolio_url
+                            ? app.portfolio_url.startsWith("http")
                               ? app.portfolio_url
                               : `https://${app.portfolio_url}`
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors max-w-[260px] truncate"
-                        >
-                          <ExternalLink className="w-3 h-3 shrink-0" />
-                          {app.portfolio_url.replace(/^https?:\/\//, "")}
-                        </a>
+                            : undefined,
+                        },
+                        { label: "Vouched By", value: app.vouched_by },
+                        {
+                          label: "Applied",
+                          value: new Date(app.created_at).toLocaleDateString("en-US", {
+                            month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
+                          }),
+                        },
+                        {
+                          label: "Accepted",
+                          value: app.accepted_at
+                            ? new Date(app.accepted_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+                            : null,
+                        },
+                      ].map(
+                        (field) =>
+                          field.value && (
+                            <div key={field.label}>
+                              <p className="text-[10px] uppercase tracking-wider text-foreground/35 font-medium mb-0.5">
+                                {field.label}
+                              </p>
+                              {field.href ? (
+                                <a
+                                  href={field.href}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1 text-[13px] font-medium hover:underline break-all"
+                                >
+                                  {field.value}
+                                  <ExternalLink className="w-3 h-3 text-foreground/30 shrink-0" />
+                                </a>
+                              ) : (
+                                <p className="text-[13px] font-medium break-words">{field.value}</p>
+                              )}
+                            </div>
+                          )
                       )}
                     </div>
-                  )}
 
-                  {/* Voice note — "Why do you create?" */}
-                  {app.voice_note_url && (
-                    <div className="mt-3 p-2.5 rounded-lg bg-foreground/[0.03] border border-foreground/[0.06]">
-                      <p className="text-[10px] uppercase tracking-wider text-foreground/35 mb-1.5 font-medium">
-                        🎙 Why do you create?
-                      </p>
-                      <audio
-                        controls
-                        preload="none"
-                        src={app.voice_note_url}
-                        className="w-full h-9"
-                      />
-                    </div>
-                  )}
-
-                  {/* Timestamp */}
-                  <p className="text-[11px] text-foreground/25 mt-1.5">
-                    Applied {new Date(app.created_at).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                      hour: "numeric",
-                      minute: "2-digit",
-                    })}
-                    {app.accepted_at && (
-                      <>
-                        {" · "}Accepted{" "}
-                        {new Date(app.accepted_at).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </>
+                    {app.notes && (
+                      <div className="mb-4 p-3 rounded-lg bg-background border border-foreground/[0.06]">
+                        <p className="text-[10px] uppercase tracking-wider text-foreground/35 font-medium mb-1">Notes</p>
+                        <p className="text-[13px] leading-relaxed">{app.notes}</p>
+                      </div>
                     )}
-                  </p>
 
-                  {/* Referral link (for accepted) */}
-                  {app.status === "accepted" && app.referral_slug && (
-                    <div className="flex items-center gap-2 mt-3 p-2.5 rounded-lg bg-foreground/[0.03] border border-foreground/[0.06]">
-                      <span className="text-xs text-foreground/50 truncate flex-1">
-                        kingdomartists.com/?ref={app.referral_slug}
-                      </span>
-                      <button
-                        onClick={() =>
-                          copyToClipboard(
-                            `https://kingdomartists.com/?ref=${app.referral_slug}`,
-                            app.id
-                          )
-                        }
-                        className="flex items-center gap-1 px-2 py-1 rounded-md bg-foreground/[0.06] text-[10px] font-medium hover:bg-foreground/[0.1] transition-colors"
-                      >
-                        {copiedLink === app.id ? (
-                          <>
-                            <Check className="w-3 h-3 text-emerald-500" />
-                            Copied
-                          </>
+                    {app.voice_note_url ? (
+                      <div className="mb-4 p-3 rounded-lg bg-background border border-foreground/[0.06]">
+                        <p className="text-[10px] uppercase tracking-wider text-foreground/35 font-medium mb-1.5">
+                          🎙 Why do you create?
+                        </p>
+                        <audio controls preload="none" src={app.voice_note_url} className="w-full h-9" />
+                      </div>
+                    ) : (
+                      <p className="mb-4 text-xs text-foreground/30">No voice note submitted.</p>
+                    )}
+
+                    {app.status === "accepted" && app.referral_slug && (
+                      <div className="flex items-center gap-2 mb-4 p-2.5 rounded-lg bg-emerald-50 border border-emerald-200/50">
+                        <span className="text-xs text-emerald-800 truncate flex-1">
+                          kingdomartists.com/?ref={app.referral_slug}
+                        </span>
+                        <button
+                          onClick={() => copyToClipboard(`https://kingdomartists.com/?ref=${app.referral_slug}`, app.id)}
+                          className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-600 text-white text-[10px] font-medium hover:bg-emerald-700 transition-colors"
+                        >
+                          {copiedLink === app.id ? (
+                            <><Check className="w-3 h-3" /> Copied</>
+                          ) : (
+                            <><Copy className="w-3 h-3" /> Copy Link</>
+                          )}
+                        </button>
+                      </div>
+                    )}
+
+                    {app.status === "pending" && (
+                      <div className="flex items-center gap-2">
+                        {actionLoading === app.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-foreground/30" />
                         ) : (
                           <>
-                            <Copy className="w-3 h-3" />
-                            Copy
+                            <button
+                              onClick={() => handleAccept(app.id)}
+                              className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors"
+                            >
+                              <Check className="w-3.5 h-3.5" />
+                              Accept — Welcome to the Family
+                            </button>
+                            <button
+                              onClick={() => handleReject(app.id)}
+                              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-foreground/[0.1] text-foreground/45 text-xs font-medium hover:text-red-500 hover:border-red-200 transition-colors"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                              Not Right Now
+                            </button>
                           </>
                         )}
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Actions */}
-                {app.status === "pending" && (
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    {actionLoading === app.id ? (
-                      <Loader2 className="w-4 h-4 animate-spin text-foreground/30" />
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => handleAccept(app.id)}
-                          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-medium hover:bg-emerald-700 transition-colors"
-                        >
-                          <Check className="w-3.5 h-3.5" />
-                          Accept
-                        </button>
-                        <button
-                          onClick={() => handleReject(app.id)}
-                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-foreground/[0.08] text-foreground/40 text-xs hover:text-red-500 hover:border-red-200 transition-colors"
-                        >
-                          <X className="w-3.5 h-3.5" />
-                        </button>
-                      </>
+                      </div>
                     )}
                   </div>
                 )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
