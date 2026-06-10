@@ -1,4 +1,6 @@
 import { createServerClient } from "@/lib/supabase";
+import { sendEmail } from "@/lib/send-email";
+import { applicationReceivedEmail } from "@/lib/email-templates";
 
 export const dynamic = "force-dynamic";
 
@@ -76,6 +78,14 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+
+    // Confirmation email — best-effort, never blocks the application
+    const received = applicationReceivedEmail(
+      data.name,
+      !!isVouched,
+      vouched_by || undefined
+    );
+    await sendEmail({ to: data.email, ...received });
 
     return Response.json({
       success: true,

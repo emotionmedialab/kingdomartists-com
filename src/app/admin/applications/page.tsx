@@ -9,10 +9,8 @@ import {
   Star,
   Users,
   Clock,
-  Filter,
   Copy,
   ExternalLink,
-  ChevronDown,
   Loader2,
   ArrowLeft,
   Inbox,
@@ -41,7 +39,6 @@ export default function ApplicationsPage() {
   const [search, setSearch] = useState("");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Check for saved admin key
   useEffect(() => {
@@ -103,9 +100,14 @@ export default function ApplicationsPage() {
 
       const data = await res.json();
 
-      // Show the acceptance email content
-      if (data.email) {
-        setExpandedId(id);
+      if (data.emailSent) {
+        alert(
+          `Accepted! Acceptance email sent automatically.\n\nReferral link: ${data.referral_link}`
+        );
+      } else {
+        alert(
+          `Accepted! Email sending isn't configured yet — copy their referral link and reach out manually:\n\n${data.referral_link}`
+        );
       }
 
       await fetchApplications();
@@ -355,8 +357,14 @@ export default function ApplicationsPage() {
                   </div>
 
                   {/* Details */}
-                  <div className="flex items-center gap-3 mt-1.5 text-xs text-foreground/40">
+                  <div className="flex items-center gap-3 mt-1.5 text-xs text-foreground/40 flex-wrap">
                     <span>{app.email}</span>
+                    {app.phone && (
+                      <>
+                        <span className="text-foreground/15">·</span>
+                        <span>{app.phone}</span>
+                      </>
+                    )}
                     {app.creative_type && (
                       <>
                         <span className="text-foreground/15">·</span>
@@ -372,6 +380,64 @@ export default function ApplicationsPage() {
                       </>
                     )}
                   </div>
+
+                  {/* Socials + work link */}
+                  {(app.instagram || app.tiktok || app.portfolio_url) && (
+                    <div className="flex items-center gap-3 mt-2 text-xs flex-wrap">
+                      {app.instagram && (
+                        <a
+                          href={`https://instagram.com/${app.instagram.replace(/^@/, "")}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          IG {app.instagram}
+                        </a>
+                      )}
+                      {app.tiktok && (
+                        <a
+                          href={`https://tiktok.com/@${app.tiktok.replace(/^@/, "")}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          TikTok {app.tiktok}
+                        </a>
+                      )}
+                      {app.portfolio_url && (
+                        <a
+                          href={
+                            app.portfolio_url.startsWith("http")
+                              ? app.portfolio_url
+                              : `https://${app.portfolio_url}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 text-foreground/50 hover:text-foreground transition-colors max-w-[260px] truncate"
+                        >
+                          <ExternalLink className="w-3 h-3 shrink-0" />
+                          {app.portfolio_url.replace(/^https?:\/\//, "")}
+                        </a>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Voice note — "Why do you create?" */}
+                  {app.voice_note_url && (
+                    <div className="mt-3 p-2.5 rounded-lg bg-foreground/[0.03] border border-foreground/[0.06]">
+                      <p className="text-[10px] uppercase tracking-wider text-foreground/35 mb-1.5 font-medium">
+                        🎙 Why do you create?
+                      </p>
+                      <audio
+                        controls
+                        preload="none"
+                        src={app.voice_note_url}
+                        className="w-full h-9"
+                      />
+                    </div>
+                  )}
 
                   {/* Timestamp */}
                   <p className="text-[11px] text-foreground/25 mt-1.5">
