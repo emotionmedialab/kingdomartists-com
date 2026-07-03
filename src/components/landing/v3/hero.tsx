@@ -40,6 +40,71 @@ function MaskedLine({
   );
 }
 
+const PORTRAITS = [
+  { src: "/characters/01-songwriter-web.jpg", label: "Songwriter", tilt: -4, y: 34, delay: 1.15 },
+  { src: "/characters/03-musician-web.jpg", label: "Musician", tilt: 2.5, y: 0, delay: 1.3 },
+  { src: "/characters/05-filmmaker-web.jpg", label: "Filmmaker", tilt: 5, y: 52, delay: 1.45 },
+];
+
+function HeroCollage() {
+  return (
+    <div
+      aria-hidden
+      className="ka-hero-collage"
+      style={{
+        position: "absolute",
+        right: "clamp(16px, 4vw, 64px)",
+        top: "clamp(88px, 12vh, 140px)",
+        display: "flex",
+        gap: "clamp(10px, 1.2vw, 18px)",
+        alignItems: "flex-start",
+        pointerEvents: "none",
+      }}
+    >
+      {PORTRAITS.map((p) => (
+        <div
+          key={p.label}
+          style={{
+            width: "clamp(90px, 10.5vw, 170px)",
+            transform: `rotate(${p.tilt}deg) translateY(${p.y}px)`,
+            opacity: 0,
+            animation: `ka-fade 1s cubic-bezier(0.16,1,0.3,1) ${p.delay}s forwards`,
+          }}
+        >
+          <div
+            style={{
+              borderRadius: 10,
+              overflow: "hidden",
+              border: "1px solid rgba(22,20,15,0.12)",
+              boxShadow: "0 24px 48px -24px rgba(22,20,15,0.35)",
+              animation: `ka-float 7s ease-in-out ${p.delay}s infinite`,
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={p.src}
+              alt=""
+              style={{ display: "block", width: "100%", aspectRatio: "3/4", objectFit: "cover" }}
+            />
+          </div>
+          <p
+            style={{
+              margin: "8px 2px 0",
+              fontFamily: serif,
+              fontStyle: "italic",
+              fontSize: 13,
+              color: "rgba(22,20,15,0.45)",
+              textAlign: "center",
+            }}
+          >
+            {p.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function Hero() {
   return (
     <header
@@ -57,6 +122,7 @@ export function Hero() {
         overflow: "hidden",
       }}
     >
+      <HeroCollage />
       {/* badge */}
       <div
         style={{

@@ -247,6 +247,9 @@
   0% { transform: translateX(-130%); }
   55%, 100% { transform: translateX(430%); }
 }
+@keyframes ka-drawline {
+  to { transform: scaleX(1); }
+}
 @keyframes ka-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
@@ -336,6 +339,12 @@
 }
 .ka-submit:hover {
   background: #ffffff !important;
+}
+
+@media (max-width: 900px) {
+  .ka-hero-collage {
+    display: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
