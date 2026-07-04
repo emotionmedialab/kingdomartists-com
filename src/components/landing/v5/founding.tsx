@@ -94,7 +94,7 @@ export function Founding() {
           <div
             style={{
               border: "1px solid rgba(30,69,201,0.35)",
-              borderRadius: 14,
+              borderRadius: 18,
               background: T.surface,
               padding: "clamp(24px, 3.5vw, 44px)",
             }}
@@ -187,7 +187,7 @@ export function Founding() {
         >
           {PERKS.map(([num, title, body]) => (
             <Reveal key={num}>
-              <div className="ka5-card" style={{ borderRadius: 14, padding: "clamp(22px, 2.4vw, 34px)", height: "100%", boxSizing: "border-box" }}>
+              <div className="ka5-card" style={{ borderRadius: 18, padding: "clamp(22px, 2.4vw, 34px)", height: "100%", boxSizing: "border-box" }}>
                 <span style={{ display: "block", fontFamily: display, fontSize: 14, color: T.gold, marginBottom: 20 }}>{num}</span>
                 <h3 style={{ margin: "0 0 10px", fontFamily: display, fontWeight: 400, fontSize: "clamp(21px, 1.9vw, 27px)", lineHeight: 1.15, color: T.ivory }}>
                   {title}

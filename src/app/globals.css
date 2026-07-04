@@ -372,38 +372,59 @@
 .ka5-cta {
   background: var(--k-cta);
   color: #ffffff;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 10px 30px -12px rgba(30, 69, 201, 0.5);
+  transition:
+    background 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+  box-shadow:
+    0 1px 2px rgba(16, 17, 20, 0.08),
+    0 12px 32px -14px rgba(30, 69, 201, 0.55);
 }
 .ka5-cta:hover {
   background: #1738a8;
+  transform: translateY(-2px);
+  box-shadow:
+    0 2px 4px rgba(16, 17, 20, 0.08),
+    0 18px 40px -14px rgba(30, 69, 201, 0.6);
 }
 .ka5-cta:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.98);
 }
 
 .ka5-ghost {
-  border: 1px solid rgba(16, 17, 20, 0.25);
+  border: 1px solid rgba(16, 17, 20, 0.22);
   color: var(--k-ivory);
-  transition: border-color 0.3s ease, background 0.3s ease;
+  background: rgba(255, 255, 255, 0.6);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ka5-ghost:hover {
   border-color: var(--k-gold);
-  background: rgba(30, 69, 201, 0.06);
+  background: var(--k-gold);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .ka5-card {
   background: var(--k-surface);
   border: 1px solid var(--k-border);
+  box-shadow:
+    0 1px 2px rgba(16, 17, 20, 0.03),
+    0 8px 24px -16px rgba(16, 17, 20, 0.08);
   transition:
     transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
 .ka5-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(30, 69, 201, 0.45);
-  box-shadow: 0 24px 48px -30px rgba(30, 69, 201, 0.25);
+  transform: translateY(-4px);
+  border-color: rgba(30, 69, 201, 0.35);
+  box-shadow:
+    0 2px 4px rgba(16, 17, 20, 0.03),
+    0 24px 48px -24px rgba(30, 69, 201, 0.22);
 }
 
 .ka5-faq-item {

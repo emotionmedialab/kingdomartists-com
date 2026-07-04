@@ -71,7 +71,7 @@ export function Platform() {
         <Reveal style={{ marginBottom: "clamp(48px, 7vw, 96px)" }}>
           <div
             style={{
-              borderRadius: 16,
+              borderRadius: 20,
               border: `1px solid ${T.border}`,
               background: T.surface,
               overflow: "hidden",
@@ -255,7 +255,7 @@ export function Platform() {
         >
           {TIMELINE.map((t) => (
             <Reveal key={t.when}>
-              <div className="ka5-card" style={{ borderRadius: 14, padding: "clamp(22px, 2.4vw, 36px)", height: "100%", boxSizing: "border-box" }}>
+              <div className="ka5-card" style={{ borderRadius: 18, padding: "clamp(22px, 2.4vw, 36px)", height: "100%", boxSizing: "border-box" }}>
                 <p
                   style={{
                     margin: "0 0 16px",

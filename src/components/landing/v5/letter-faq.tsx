@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { T, display, label, Eyebrow, Reveal, sectionPad, inner, ApplyButton } from "./ui";
+import { T, display, label, Eyebrow, Reveal, sectionPad, inner, ApplyButton, Wordmark } from "./ui";
 
 export function FounderLetter() {
   return (
@@ -195,7 +195,7 @@ export function Closer() {
           textAlign: "left",
         }}
       >
-        <span style={{ fontFamily: display, fontWeight: 400, fontSize: 19, color: T.ivory }}>Kingdom Artists</span>
+        <Wordmark size={19} />
         <span style={{ fontSize: 12.5, color: "rgba(16,17,20,0.35)" }}>© 2026 Kingdom Artists. Built with purpose.</span>
       </footer>
     </section>

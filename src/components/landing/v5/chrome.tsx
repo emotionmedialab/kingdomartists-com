@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { T, display, label } from "./ui";
+import { T, label, Wordmark } from "./ui";
 
 /** v5 fixed chrome: gold progress hairline, dark blurring nav, floating apply bar. */
 export function Chrome() {
@@ -153,18 +153,8 @@ export function Chrome() {
           transition: "background 0.4s ease, border-color 0.4s ease",
         }}
       >
-        <a
-          href="#top"
-          style={{
-            fontFamily: display,
-            fontWeight: 500,
-            fontSize: "clamp(18px, 1.6vw, 22px)",
-            letterSpacing: "-0.01em",
-            color: T.ivory,
-            textDecoration: "none",
-          }}
-        >
-          Kingdom Artists
+        <a href="#top" style={{ textDecoration: "none" }}>
+          <Wordmark size={22} />
         </a>
         <a
           href="/apply"

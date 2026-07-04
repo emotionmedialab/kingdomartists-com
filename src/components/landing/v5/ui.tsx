@@ -72,6 +72,23 @@ export const sectionPad: CSSProperties = {
 
 export const inner: CSSProperties = { maxWidth: 1200, margin: "0 auto" };
 
+export function Wordmark({ size = 20, color = T.ivory }: { size?: number; color?: string }) {
+  return (
+    <span
+      style={{
+        fontSize: size,
+        letterSpacing: "-0.02em",
+        color,
+        display: "inline-flex",
+        alignItems: "baseline",
+      }}
+    >
+      <em style={{ fontFamily: display, fontStyle: "italic", fontWeight: 400 }}>kingdom</em>
+      <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}>artists</span>
+    </span>
+  );
+}
+
 export function ApplyButton({
   children = "Apply for Founding Access →",
   wide = false,
@@ -95,10 +112,11 @@ export function ApplyButton({
         justifyContent: "center",
         gap: 10,
         borderRadius: 999,
-        padding: "18px 40px",
-        fontSize: 13.5,
+        padding: "19px 42px",
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
         fontWeight: 600,
-        letterSpacing: "0.1em",
+        letterSpacing: "0.06em",
         textTransform: "uppercase",
         textDecoration: "none",
         width: wide ? "min(100%, 400px)" : undefined,

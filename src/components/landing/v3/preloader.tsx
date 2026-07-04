@@ -61,8 +61,8 @@ export function Preloader() {
         <span
           style={{
             display: "block",
-            fontFamily: serif,
-            fontWeight: 500,
+            fontFamily: "var(--font-display), Georgia, serif",
+            fontWeight: 400,
             fontStyle: "italic",
             fontSize: "clamp(30px, 5vw, 54px)",
             letterSpacing: "-0.01em",
