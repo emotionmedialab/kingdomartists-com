@@ -9,8 +9,9 @@ function Line({ children, d, italic = false }: { children: string; d: number; it
       <span
         style={{
           display: "block",
+          fontFamily: italic ? display : undefined,
           fontStyle: italic ? "italic" : "normal",
-          fontWeight: italic ? 300 : undefined,
+          fontWeight: italic ? 400 : undefined,
           color: italic ? T.gold : undefined,
           transform: "translateY(112%)",
           animation: `ka-rise 0.9s ${easeOut} ${d}s forwards`,
@@ -42,7 +43,7 @@ export function Hero() {
         justifyContent: "flex-end",
         padding: "clamp(96px, 14vh, 160px) clamp(20px, 5vw, 64px) clamp(48px, 8vh, 88px)",
         backgroundImage:
-          "radial-gradient(1100px 700px at 85% -10%, rgba(201,169,106,0.13), transparent 60%), radial-gradient(800px 500px at -10% 110%, rgba(201,169,106,0.07), transparent 60%)",
+          "radial-gradient(1100px 700px at 85% -10%, rgba(30,69,201,0.13), transparent 60%), radial-gradient(800px 500px at -10% 110%, rgba(30,69,201,0.07), transparent 60%)",
         overflow: "hidden",
       }}
     >
@@ -53,8 +54,8 @@ export function Hero() {
           alignItems: "center",
           gap: 10,
           alignSelf: "flex-start",
-          border: "1px solid rgba(201,169,106,0.35)",
-          background: "rgba(201,169,106,0.06)",
+          border: "1px solid rgba(30,69,201,0.35)",
+          background: "rgba(30,69,201,0.06)",
           borderRadius: 999,
           padding: "9px 18px 9px 14px",
           marginBottom: "clamp(28px, 4vh, 48px)",
@@ -90,11 +91,11 @@ export function Hero() {
       <h1
         style={{
           margin: "0 0 clamp(28px, 4vh, 52px)",
-          fontFamily: display,
-          fontWeight: 400,
+          fontFamily: "var(--font-sans)",
+          fontWeight: 700,
           fontSize: "clamp(46px, 9vw, 132px)",
           lineHeight: 1.02,
-          letterSpacing: "-0.025em",
+          letterSpacing: "-0.035em",
           color: T.ivory,
         }}
       >
@@ -113,7 +114,7 @@ export function Hero() {
           alignItems: "flex-end",
           justifyContent: "space-between",
           gap: "clamp(24px, 4vw, 64px)",
-          borderTop: "1px solid rgba(201,169,106,0.18)",
+          borderTop: "1px solid rgba(30,69,201,0.18)",
           paddingTop: "clamp(24px, 3.5vh, 40px)",
         }}
       >
@@ -148,7 +149,7 @@ export function Hero() {
               fontSize: 12,
               lineHeight: 1.6,
               maxWidth: 300,
-              color: "rgba(245,241,232,0.4)",
+              color: "rgba(16,17,20,0.4)",
             }}
           >
             Every accepted member gets a personal link to vouch for creatives

@@ -66,8 +66,8 @@ export function Founding() {
             <h2
               style={{
                 margin: 0,
-                fontFamily: display,
-                fontWeight: 400,
+                fontFamily: "var(--font-sans)",
+                fontWeight: 700,
                 fontSize: "clamp(48px, 7vw, 104px)",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
@@ -93,7 +93,7 @@ export function Founding() {
         <Reveal style={{ marginBottom: "clamp(48px, 7vw, 90px)" }}>
           <div
             style={{
-              border: "1px solid rgba(201,169,106,0.35)",
+              border: "1px solid rgba(30,69,201,0.35)",
               borderRadius: 14,
               background: T.surface,
               padding: "clamp(24px, 3.5vw, 44px)",
@@ -121,7 +121,7 @@ export function Founding() {
                 >
                   {displayed}
                 </span>
-                <span style={{ fontFamily: display, fontSize: "clamp(20px, 2vw, 28px)", color: "rgba(245,241,232,0.5)" }}>
+                <span style={{ fontFamily: display, fontSize: "clamp(20px, 2vw, 28px)", color: "rgba(16,17,20,0.5)" }}>
                   of 300
                 </span>
               </div>
@@ -143,7 +143,7 @@ export function Founding() {
                 position: "relative",
                 height: "clamp(34px, 4vw, 54px)",
                 overflow: "hidden",
-                backgroundImage: "linear-gradient(90deg, rgba(245,241,232,0.16) 0px, rgba(245,241,232,0.16) 1.5px, transparent 1.5px)",
+                backgroundImage: "linear-gradient(90deg, rgba(16,17,20,0.16) 0px, rgba(16,17,20,0.16) 1.5px, transparent 1.5px)",
                 backgroundSize: "calc(100% / 300) 100%",
                 backgroundRepeat: "repeat-x",
               }}
@@ -155,9 +155,9 @@ export function Founding() {
                   bottom: 0,
                   left: 0,
                   width: `calc(100% / 300 * ${Math.max(claimed, 1)})`,
-                  backgroundImage: "linear-gradient(90deg, #C9A96A 0px, #C9A96A 1.5px, transparent 1.5px)",
+                  backgroundImage: "linear-gradient(90deg, #1E45C9 0px, #1E45C9 1.5px, transparent 1.5px)",
                   backgroundSize: `calc(100% / ${Math.max(claimed, 1)}) 100%`,
-                  boxShadow: "0 0 12px rgba(201,169,106,0.6)",
+                  boxShadow: "0 0 12px rgba(30,69,201,0.6)",
                   animation: claimed === 0 ? "ka-tickpulse 2.4s ease-in-out infinite" : undefined,
                 }}
               />
@@ -168,7 +168,7 @@ export function Founding() {
                   bottom: 0,
                   left: 0,
                   width: "30%",
-                  background: "linear-gradient(90deg, transparent, rgba(201,169,106,0.14), transparent)",
+                  background: "linear-gradient(90deg, transparent, rgba(30,69,201,0.14), transparent)",
                   animation: "ka-sweep 4.5s ease-in-out infinite",
                 }}
               />
@@ -220,7 +220,7 @@ export function Founding() {
                       width: 34,
                       height: 34,
                       borderRadius: "50%",
-                      border: "1px solid rgba(201,169,106,0.5)",
+                      border: "1px solid rgba(30,69,201,0.5)",
                       fontFamily: display,
                       fontSize: 14,
                       color: T.gold,
@@ -243,7 +243,7 @@ export function Founding() {
 
         <Reveal style={{ textAlign: "center" }}>
           <ApplyButton wide>Apply Now →</ApplyButton>
-          <p style={{ margin: "14px 0 0", fontSize: 12, color: "rgba(245,241,232,0.4)" }}>
+          <p style={{ margin: "14px 0 0", fontSize: 12, color: "rgba(16,17,20,0.4)" }}>
             Takes under two minutes. A real person reviews every application.
           </p>
         </Reveal>

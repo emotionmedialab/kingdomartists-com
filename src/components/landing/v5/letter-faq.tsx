@@ -131,7 +131,7 @@ export function Closer() {
       style={{
         position: "relative",
         padding: "clamp(80px, 12vw, 180px) clamp(20px, 5vw, 64px) 0",
-        backgroundImage: "radial-gradient(900px 500px at 50% 0%, rgba(201,169,106,0.12), transparent 65%)",
+        backgroundImage: "radial-gradient(900px 500px at 50% 0%, rgba(30,69,201,0.12), transparent 65%)",
         textAlign: "center",
       }}
     >
@@ -155,8 +155,8 @@ export function Closer() {
           <h2
             style={{
               margin: "0 0 26px",
-              fontFamily: display,
-              fontWeight: 400,
+              fontFamily: "var(--font-sans)",
+              fontWeight: 700,
               fontSize: "clamp(38px, 5.6vw, 76px)",
               lineHeight: 1.08,
               letterSpacing: "-0.02em",
@@ -175,7 +175,7 @@ export function Closer() {
         </Reveal>
         <Reveal>
           <ApplyButton wide>Begin Your Application →</ApplyButton>
-          <p style={{ margin: "20px 0 0", fontSize: 12, color: "rgba(245,241,232,0.35)" }}>
+          <p style={{ margin: "20px 0 0", fontSize: 12, color: "rgba(16,17,20,0.35)" }}>
             Every application is read by a real person.
           </p>
         </Reveal>
@@ -196,7 +196,7 @@ export function Closer() {
         }}
       >
         <span style={{ fontFamily: display, fontWeight: 400, fontSize: 19, color: T.ivory }}>Kingdom Artists</span>
-        <span style={{ fontSize: 12.5, color: "rgba(245,241,232,0.35)" }}>© 2026 Kingdom Artists. Built with purpose.</span>
+        <span style={{ fontSize: 12.5, color: "rgba(16,17,20,0.35)" }}>© 2026 Kingdom Artists. Built with purpose.</span>
       </footer>
     </section>
   );

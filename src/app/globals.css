@@ -350,41 +350,46 @@
 /* ───────── Kingdom Artists v5 — "Upper Room" (dark premium) ───────── */
 
 .ka5 {
-  --k-bg: #0c0a09;
-  --k-surface: #1a1714;
-  --k-border: #2a2620;
-  --k-ivory: #f5f1e8;
-  --k-muted: #a39e93;
-  --k-gold: #c9a96a;
-  --k-cta: #e2b857;
+  --k-bg: #f5f5f2;
+  --k-surface: #ffffff;
+  --k-border: #e5e4de;
+  --k-ivory: #101014;
+  --k-muted: #5e6169;
+  --k-gold: #1e45c9;
+  --k-cta: #1e45c9;
   background: var(--k-bg);
   color: var(--k-ivory);
   overflow-x: clip;
 }
 .ka5 ::selection {
-  background: rgba(201, 169, 106, 0.32);
+  background: rgba(30, 69, 201, 0.2);
+}
+.ka5 em {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
 }
 
 .ka5-cta {
   background: var(--k-cta);
-  color: #0c0a09;
-  transition: background 0.3s ease, transform 0.2s ease;
+  color: #ffffff;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px -12px rgba(30, 69, 201, 0.5);
 }
 .ka5-cta:hover {
-  background: #efc96e;
+  background: #1738a8;
 }
 .ka5-cta:active {
   transform: scale(0.98);
 }
 
 .ka5-ghost {
-  border: 1px solid rgba(245, 241, 232, 0.28);
+  border: 1px solid rgba(16, 17, 20, 0.25);
   color: var(--k-ivory);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .ka5-ghost:hover {
   border-color: var(--k-gold);
-  background: rgba(201, 169, 106, 0.08);
+  background: rgba(30, 69, 201, 0.06);
 }
 
 .ka5-card {
@@ -397,8 +402,8 @@
 }
 .ka5-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(201, 169, 106, 0.55);
-  box-shadow: 0 28px 56px -34px rgba(201, 169, 106, 0.35);
+  border-color: rgba(30, 69, 201, 0.45);
+  box-shadow: 0 24px 48px -30px rgba(30, 69, 201, 0.25);
 }
 
 .ka5-faq-item {

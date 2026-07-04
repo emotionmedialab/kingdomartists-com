@@ -37,8 +37,8 @@ export function Platform() {
             style={{
               margin: "0 0 clamp(20px, 2.5vw, 36px)",
               maxWidth: 900,
-              fontFamily: display,
-              fontWeight: 400,
+              fontFamily: "var(--font-sans)",
+              fontWeight: 700,
               fontSize: "clamp(38px, 5.8vw, 88px)",
               lineHeight: 1.06,
               letterSpacing: "-0.02em",
@@ -75,7 +75,7 @@ export function Platform() {
               border: `1px solid ${T.border}`,
               background: T.surface,
               overflow: "hidden",
-              boxShadow: "0 60px 120px -60px rgba(0,0,0,0.8), 0 0 80px -40px rgba(201,169,106,0.25)",
+              boxShadow: "0 60px 120px -60px rgba(16,17,20,0.16), 0 0 80px -40px rgba(30,69,201,0.25)",
             }}
           >
             {/* title bar */}
@@ -88,7 +88,7 @@ export function Platform() {
                 borderBottom: `1px solid ${T.border}`,
               }}
             >
-              {["#3d3833", "#3d3833", "#3d3833"].map((c, i) => (
+              {["#D9D8D2", "#D9D8D2", "#D9D8D2"].map((c, i) => (
                 <span key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
               ))}
               <span
@@ -97,7 +97,7 @@ export function Platform() {
                   fontFamily: label,
                   fontSize: 11,
                   letterSpacing: "0.08em",
-                  color: "rgba(245,241,232,0.35)",
+                  color: "rgba(16,17,20,0.35)",
                 }}
               >
                 app.kingdomartists.com — coming soon
@@ -122,13 +122,13 @@ export function Platform() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      color: i === 0 ? T.cta : "rgba(245,241,232,0.5)",
-                      background: i === 0 ? "rgba(201,169,106,0.1)" : "transparent",
+                      color: i === 0 ? T.cta : "rgba(16,17,20,0.5)",
+                      background: i === 0 ? "rgba(30,69,201,0.1)" : "transparent",
                     }}
                   >
                     {item}
                     {item === "Messages" && (
-                      <span style={{ fontSize: 9, fontWeight: 700, background: T.cta, color: "#0C0A09", borderRadius: 999, padding: "1px 6px" }}>3</span>
+                      <span style={{ fontSize: 9, fontWeight: 700, background: T.cta, color: "#FFFFFF", borderRadius: 999, padding: "1px 6px" }}>3</span>
                     )}
                   </span>
                 ))}
@@ -149,8 +149,8 @@ export function Platform() {
                     marginBottom: 14,
                   }}
                 >
-                  <span style={{ color: "rgba(245,241,232,0.35)", fontSize: 13 }}>⌕</span>
-                  <span style={{ fontSize: 12.5, color: "rgba(245,241,232,0.4)" }}>
+                  <span style={{ color: "rgba(16,17,20,0.35)", fontSize: 13 }}>⌕</span>
+                  <span style={{ fontSize: 12.5, color: "rgba(16,17,20,0.4)" }}>
                     Search by craft, city, or calling...
                   </span>
                 </div>
@@ -164,9 +164,9 @@ export function Platform() {
                         letterSpacing: "0.04em",
                         borderRadius: 999,
                         padding: "5px 12px",
-                        border: `1px solid ${i === 0 ? "rgba(201,169,106,0.6)" : T.border}`,
-                        color: i === 0 ? T.cta : "rgba(245,241,232,0.5)",
-                        background: i === 0 ? "rgba(201,169,106,0.08)" : "transparent",
+                        border: `1px solid ${i === 0 ? "rgba(30,69,201,0.6)" : T.border}`,
+                        color: i === 0 ? T.cta : "rgba(16,17,20,0.5)",
+                        background: i === 0 ? "rgba(30,69,201,0.08)" : "transparent",
                       }}
                     >
                       {f}
@@ -182,7 +182,7 @@ export function Platform() {
                 {/* profile cards */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 12 }}>
                   {MOCK_PROFILES.map((p) => (
-                    <div key={p.name} style={{ borderRadius: 10, overflow: "hidden", border: `1px solid ${p.featured ? "rgba(201,169,106,0.45)" : T.border}`, background: T.bg }}>
+                    <div key={p.name} style={{ borderRadius: 10, overflow: "hidden", border: `1px solid ${p.featured ? "rgba(30,69,201,0.45)" : T.border}`, background: T.bg }}>
                       <div style={{ position: "relative" }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={p.src} alt="" style={{ display: "block", width: "100%", aspectRatio: "3/2.4", objectFit: "cover", objectPosition: "top" }} />
@@ -196,7 +196,7 @@ export function Platform() {
                             letterSpacing: "0.08em",
                             textTransform: "uppercase",
                             color: p.tagColor,
-                            background: "rgba(12,10,9,0.78)",
+                            background: "rgba(255,255,255,0.92)",
                             borderRadius: 999,
                             padding: "4px 8px",
                           }}
@@ -213,7 +213,7 @@ export function Platform() {
                               fontWeight: 700,
                               letterSpacing: "0.08em",
                               textTransform: "uppercase",
-                              color: "#0C0A09",
+                              color: "#FFFFFF",
                               background: T.cta,
                               borderRadius: 999,
                               padding: "4px 8px",
@@ -225,14 +225,14 @@ export function Platform() {
                       </div>
                       <div style={{ padding: "10px 12px" }}>
                         <span style={{ display: "block", fontFamily: display, fontStyle: "italic", fontSize: 14, color: T.ivory }}>{p.name}</span>
-                        <span style={{ display: "block", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(245,241,232,0.4)", marginBottom: 8 }}>
+                        <span style={{ display: "block", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(16,17,20,0.4)", marginBottom: 8 }}>
                           {p.city}
                         </span>
                         <div style={{ display: "flex", gap: 6 }}>
-                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", background: T.cta, color: "#0C0A09" }}>
+                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", background: T.cta, color: "#FFFFFF" }}>
                             Message
                           </span>
-                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", border: `1px solid ${T.border}`, color: "rgba(245,241,232,0.6)" }}>
+                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", border: `1px solid ${T.border}`, color: "rgba(16,17,20,0.6)" }}>
                             View work
                           </span>
                         </div>

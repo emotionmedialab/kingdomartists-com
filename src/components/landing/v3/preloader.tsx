@@ -41,7 +41,7 @@ export function Preloader() {
         position: "fixed",
         inset: 0,
         zIndex: 200,
-        background: "#16140F",
+        background: "#1E45C9",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -78,7 +78,7 @@ export function Preloader() {
         style={{
           width: 44,
           height: 1,
-          background: "#B8872B",
+          background: "rgba(255,255,255,0.85)",
           transformOrigin: "center",
           transform: "scaleX(0)",
           animation: `ka-drawline 0.7s ${easeOut} 0.7s forwards`,
@@ -90,7 +90,7 @@ export function Preloader() {
           fontWeight: 600,
           letterSpacing: "0.28em",
           textTransform: "uppercase",
-          color: "rgba(244,239,229,0.4)",
+          color: "rgba(255,255,255,0.65)",
           opacity: 0,
           animation: `ka-fade 0.6s ease 0.95s forwards`,
         }}

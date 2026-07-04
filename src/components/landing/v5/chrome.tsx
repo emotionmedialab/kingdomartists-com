@@ -24,10 +24,10 @@ export function Chrome() {
         const nav = navRef.current;
         if (nav) {
           const s = window.scrollY > 24;
-          nav.style.background = s ? "rgba(12,10,9,0.75)" : "transparent";
+          nav.style.background = s ? "rgba(245,245,242,0.82)" : "transparent";
           nav.style.backdropFilter = s ? "blur(16px)" : "none";
           nav.style.borderBottomColor = s
-            ? "rgba(201,169,106,0.14)"
+            ? "rgba(30,69,201,0.14)"
             : "transparent";
         }
         const fcta = ctaRef.current;
@@ -87,11 +87,11 @@ export function Chrome() {
           boxSizing: "border-box",
           background: T.surface,
           color: T.ivory,
-          border: "1px solid rgba(201,169,106,0.45)",
+          border: "1px solid rgba(30,69,201,0.45)",
           borderRadius: 999,
           padding: "15px 24px",
           textDecoration: "none",
-          boxShadow: "0 18px 44px -14px rgba(0,0,0,0.7)",
+          boxShadow: "0 18px 44px -14px rgba(16,17,20,0.14)",
           opacity: 0,
           pointerEvents: "none",
           whiteSpace: "nowrap",
@@ -120,7 +120,7 @@ export function Chrome() {
           300 founding spots
         </span>
         <span
-          style={{ width: 1, height: 14, background: "rgba(245,241,232,0.2)" }}
+          style={{ width: 1, height: 14, background: "rgba(16,17,20,0.2)" }}
         />
         <span
           style={{

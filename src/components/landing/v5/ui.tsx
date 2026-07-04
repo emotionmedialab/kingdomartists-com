@@ -5,13 +5,13 @@ export { Reveal } from "../v3/reveal";
 export { MagneticLink } from "../v3/magnetic";
 
 export const T = {
-  bg: "#0C0A09",
-  surface: "#1A1714",
-  border: "#2A2620",
-  ivory: "#F5F1E8",
-  muted: "#A39E93",
-  gold: "#C9A96A",
-  cta: "#E2B857",
+  bg: "#F5F5F2",
+  surface: "#FFFFFF",
+  border: "#E5E4DE",
+  ivory: "#101014", // primary text (ink)
+  muted: "#5E6169",
+  gold: "#1E45C9", // cobalt accent
+  cta: "#1E45C9",
 };
 
 export const display = "var(--font-display), Georgia, serif";
@@ -56,7 +56,7 @@ export function Eyebrow({
           style={{
             fontFamily: display,
             fontSize: 14,
-            color: "rgba(245,241,232,0.35)",
+            color: "rgba(16,17,20,0.35)",
           }}
         >
           {num}

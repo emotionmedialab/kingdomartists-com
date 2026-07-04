@@ -53,13 +53,13 @@ export function Marquee() {
           gap: "0.45em",
           width: "max-content",
           willChange: "transform",
-          fontFamily: display,
+          fontFamily: "var(--font-sans)",
           fontSize: "clamp(34px, 5.8vw, 84px)",
           lineHeight: 1.15,
-          fontWeight: 400,
-          letterSpacing: "-0.02em",
+          fontWeight: 700,
+          letterSpacing: "-0.03em",
           color: "transparent",
-          WebkitTextStroke: "1px rgba(245,241,232,0.35)",
+          WebkitTextStroke: "1.2px rgba(16,17,20,0.28)",
         }}
       >
         {[...WORDS, ...WORDS].map((w, i) => (
@@ -127,8 +127,8 @@ export function Problem() {
             style={{
               margin: "0 0 clamp(48px, 7vw, 90px)",
               maxWidth: 980,
-              fontFamily: display,
-              fontWeight: 400,
+              fontFamily: "var(--font-sans)",
+              fontWeight: 700,
               fontSize: "clamp(36px, 5.4vw, 80px)",
               lineHeight: 1.08,
               letterSpacing: "-0.02em",
@@ -136,7 +136,7 @@ export function Problem() {
             }}
           >
             The gift was never the problem.
-            <em style={{ display: "block", fontWeight: 300, color: "rgba(245,241,232,0.5)" }}>
+            <em style={{ display: "block", fontWeight: 300, color: "rgba(16,17,20,0.5)" }}>
               The isolation is.
             </em>
           </h2>
@@ -181,7 +181,7 @@ export function Problem() {
             ["Built to build together", "When God filled Bezalel with His Spirit to create, the first thing He did was give him a partner."],
             ["The gathering is here", "One platform, finally built for the people who carry this."],
           ].map(([t, b]) => (
-            <Reveal key={t} style={{ borderTop: "1px solid rgba(201,169,106,0.3)", paddingTop: 22 }}>
+            <Reveal key={t} style={{ borderTop: "1px solid rgba(30,69,201,0.3)", paddingTop: 22 }}>
               <h3
                 style={{
                   margin: "0 0 12px",
@@ -258,7 +258,7 @@ export function Quote() {
         style={{
           position: "absolute",
           inset: "-10% -20%",
-          background: "radial-gradient(closest-side, rgba(201,169,106,0.2), transparent 70%)",
+          background: "radial-gradient(closest-side, rgba(30,69,201,0.2), transparent 70%)",
           opacity: 0,
           pointerEvents: "none",
         }}
