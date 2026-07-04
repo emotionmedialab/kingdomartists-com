@@ -3,12 +3,6 @@
 import { useEffect, useState } from "react";
 import { T, display, label, easeOut, ApplyButton } from "./ui";
 
-const PORTRAITS = [
-  { src: "/characters/01-songwriter-web.jpg", l: "Songwriter", tilt: -4, y: 30, d: 1.15 },
-  { src: "/characters/02-producer-web.jpg", l: "Producer", tilt: 2.5, y: 0, d: 1.3 },
-  { src: "/characters/05-filmmaker-web.jpg", l: "Filmmaker", tilt: 5, y: 46, d: 1.45 },
-];
-
 function Line({ children, d, italic = false }: { children: string; d: number; italic?: boolean }) {
   return (
     <span style={{ display: "block", overflow: "hidden", paddingBottom: "0.08em", marginBottom: "-0.06em" }}>
@@ -52,61 +46,6 @@ export function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* collage */}
-      <div
-        aria-hidden
-        className="ka-hero-collage"
-        style={{
-          position: "absolute",
-          right: "clamp(16px, 4vw, 64px)",
-          top: "clamp(88px, 12vh, 140px)",
-          display: "flex",
-          gap: "clamp(10px, 1.2vw, 18px)",
-          pointerEvents: "none",
-        }}
-      >
-        {PORTRAITS.map((p) => (
-          <div
-            key={p.l}
-            style={{
-              width: "clamp(90px, 10vw, 165px)",
-              transform: `rotate(${p.tilt}deg) translateY(${p.y}px)`,
-              opacity: 0,
-              animation: `ka-fade 1s ${easeOut} ${p.d}s forwards`,
-            }}
-          >
-            <div
-              style={{
-                borderRadius: 10,
-                overflow: "hidden",
-                border: "1px solid rgba(201,169,106,0.3)",
-                boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)",
-                animation: `ka-float 7s ease-in-out ${p.d}s infinite`,
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={p.src}
-                alt=""
-                style={{ display: "block", width: "100%", aspectRatio: "3/4", objectFit: "cover", filter: "sepia(0.12) contrast(1.02)" }}
-              />
-            </div>
-            <p
-              style={{
-                margin: "8px 2px 0",
-                fontFamily: display,
-                fontStyle: "italic",
-                fontSize: 13,
-                color: "rgba(245,241,232,0.5)",
-                textAlign: "center",
-              }}
-            >
-              {p.l}
-            </p>
-          </div>
-        ))}
-      </div>
-
       {/* badge */}
       <div
         style={{

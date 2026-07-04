@@ -3,10 +3,12 @@
 import { T, display, label, Eyebrow, Reveal, sectionPad, inner } from "./ui";
 
 const MOCK_PROFILES = [
-  { src: "/characters/01-songwriter-web.jpg", name: "Songwriter", city: "Nashville", tag: "Open to co-writes" },
-  { src: "/characters/02-producer-web.jpg", name: "Producer", city: "Atlanta", tag: "Looking for vocalists" },
-  { src: "/characters/04-engineer-web.jpg", name: "Engineer", city: "Los Angeles", tag: "Mixing & mastering" },
+  { src: "/characters/01-songwriter-web.jpg", name: "Songwriter", city: "Nashville", tag: "Open to co-writes", tagColor: "#4FBF8B", featured: true },
+  { src: "/characters/02-producer-web.jpg", name: "Producer", city: "Atlanta", tag: "Looking for vocalists", tagColor: "#C96A7A", featured: false },
+  { src: "/characters/04-engineer-web.jpg", name: "Engineer", city: "Los Angeles", tag: "Mixing & mastering", tagColor: "#6A8FC9", featured: false },
 ];
+
+const FILTERS = ["All crafts", "Near me", "Looking for: vocalists", "Worship", "Film"];
 
 const TIMELINE = [
   {
@@ -103,53 +105,87 @@ export function Platform() {
             </div>
 
             {/* app UI */}
-            <div style={{ display: "grid", gridTemplateColumns: "minmax(140px, 200px) 1fr", minHeight: 320 }}>
+            <div className="ka5-mock-grid" style={{ display: "grid", gridTemplateColumns: "minmax(140px, 190px) 1fr", minHeight: 340 }}>
               {/* sidebar */}
               <div
                 className="ka5-mock-sidebar"
-                style={{ borderRight: `1px solid ${T.border}`, padding: "20px 16px", display: "flex", flexDirection: "column", gap: 4 }}
+                style={{ borderRight: `1px solid ${T.border}`, padding: "18px 14px", display: "flex", flexDirection: "column", gap: 3 }}
               >
                 <span style={{ fontFamily: display, fontSize: 15, color: T.ivory, marginBottom: 14 }}>Kingdom Artists</span>
-                {["Discover", "My Profile", "Messages", "Collabs", "Drops"].map((item, i) => (
+                {["Discover", "Featured", "My Profile", "Messages", "Collabs", "Account"].map((item, i) => (
                   <span
                     key={item}
                     style={{
                       fontSize: 12.5,
-                      padding: "8px 10px",
+                      padding: "7px 10px",
                       borderRadius: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
                       color: i === 0 ? T.cta : "rgba(245,241,232,0.5)",
                       background: i === 0 ? "rgba(201,169,106,0.1)" : "transparent",
                     }}
                   >
                     {item}
+                    {item === "Messages" && (
+                      <span style={{ fontSize: 9, fontWeight: 700, background: T.cta, color: "#0C0A09", borderRadius: 999, padding: "1px 6px" }}>3</span>
+                    )}
                   </span>
                 ))}
               </div>
-              {/* discovery grid */}
-              <div style={{ padding: "20px" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, gap: 12, flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: display, fontSize: 17, color: T.ivory }}>Discover creatives</span>
-                  <span
-                    style={{
-                      fontFamily: label,
-                      fontSize: 10.5,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "rgba(245,241,232,0.4)",
-                      border: `1px solid ${T.border}`,
-                      borderRadius: 999,
-                      padding: "6px 12px",
-                    }}
-                  >
-                    Craft · City · Calling
+
+              {/* main panel */}
+              <div style={{ padding: "18px 20px" }}>
+                {/* search */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    border: `1px solid ${T.border}`,
+                    background: T.bg,
+                    borderRadius: 10,
+                    padding: "10px 14px",
+                    marginBottom: 14,
+                  }}
+                >
+                  <span style={{ color: "rgba(245,241,232,0.35)", fontSize: 13 }}>⌕</span>
+                  <span style={{ fontSize: 12.5, color: "rgba(245,241,232,0.4)" }}>
+                    Search by craft, city, or calling...
                   </span>
                 </div>
+                {/* filter chips */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
+                  {FILTERS.map((f, i) => (
+                    <span
+                      key={f}
+                      style={{
+                        fontSize: 10.5,
+                        letterSpacing: "0.04em",
+                        borderRadius: 999,
+                        padding: "5px 12px",
+                        border: `1px solid ${i === 0 ? "rgba(201,169,106,0.6)" : T.border}`,
+                        color: i === 0 ? T.cta : "rgba(245,241,232,0.5)",
+                        background: i === 0 ? "rgba(201,169,106,0.08)" : "transparent",
+                      }}
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
+                  <span style={{ fontFamily: display, fontSize: 16, color: T.ivory }}>Featured creatives</span>
+                  <span style={{ fontSize: 11, color: T.gold }}>See all →</span>
+                </div>
+
+                {/* profile cards */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 12 }}>
                   {MOCK_PROFILES.map((p) => (
-                    <div key={p.name} style={{ borderRadius: 10, overflow: "hidden", border: `1px solid ${T.border}`, background: T.bg }}>
+                    <div key={p.name} style={{ borderRadius: 10, overflow: "hidden", border: `1px solid ${p.featured ? "rgba(201,169,106,0.45)" : T.border}`, background: T.bg }}>
                       <div style={{ position: "relative" }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={p.src} alt="" style={{ display: "block", width: "100%", aspectRatio: "3/2.6", objectFit: "cover", objectPosition: "top" }} />
+                        <img src={p.src} alt="" style={{ display: "block", width: "100%", aspectRatio: "3/2.4", objectFit: "cover", objectPosition: "top" }} />
                         <span
                           style={{
                             position: "absolute",
@@ -159,18 +195,47 @@ export function Platform() {
                             fontWeight: 600,
                             letterSpacing: "0.08em",
                             textTransform: "uppercase",
-                            color: T.cta,
-                            background: "rgba(12,10,9,0.75)",
+                            color: p.tagColor,
+                            background: "rgba(12,10,9,0.78)",
                             borderRadius: 999,
                             padding: "4px 8px",
                           }}
                         >
                           {p.tag}
                         </span>
+                        {p.featured && (
+                          <span
+                            style={{
+                              position: "absolute",
+                              top: 8,
+                              right: 8,
+                              fontSize: 8.5,
+                              fontWeight: 700,
+                              letterSpacing: "0.08em",
+                              textTransform: "uppercase",
+                              color: "#0C0A09",
+                              background: T.cta,
+                              borderRadius: 999,
+                              padding: "4px 8px",
+                            }}
+                          >
+                            ✦ Featured
+                          </span>
+                        )}
                       </div>
                       <div style={{ padding: "10px 12px" }}>
                         <span style={{ display: "block", fontFamily: display, fontStyle: "italic", fontSize: 14, color: T.ivory }}>{p.name}</span>
-                        <span style={{ fontSize: 10.5, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(245,241,232,0.4)" }}>{p.city}</span>
+                        <span style={{ display: "block", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(245,241,232,0.4)", marginBottom: 8 }}>
+                          {p.city}
+                        </span>
+                        <div style={{ display: "flex", gap: 6 }}>
+                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", background: T.cta, color: "#0C0A09" }}>
+                            Message
+                          </span>
+                          <span style={{ flex: 1, textAlign: "center", fontSize: 10, fontWeight: 600, borderRadius: 999, padding: "5px 0", border: `1px solid ${T.border}`, color: "rgba(245,241,232,0.6)" }}>
+                            View work
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}

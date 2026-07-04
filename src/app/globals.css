@@ -442,3 +442,15 @@
   pointer-events: none;
   opacity: 0.5;
 }
+/* v5 mobile refinements */
+@media (max-width: 640px) {
+  .ka5-mock-sidebar {
+    display: none !important;
+  }
+  .ka5-mock-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ka5-process-line {
+    display: none !important;
+  }
+}

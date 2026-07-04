@@ -75,18 +75,16 @@ export function Marquee() {
 
 const SCRUB_LINES: { t: string; italic?: boolean; gold?: boolean; block?: boolean }[] = [
   { t: "You know the feeling. " },
-  { t: "The industry doesn't understand why you won't compromise. " },
-  { t: "And the way you create doesn't always fit inside the four walls of a Sunday service. " },
-  { t: "The songs at 2am. The mixes nobody asked for. The sound you can't stop chasing. " },
-  { t: "So you've been building in the in-between. " },
+  { t: "Carrying a gift most people around you don't fully understand. " },
+  { t: "The songs at 2am. The mixes nobody asked for. The vision that won't leave you alone. " },
+  { t: "You've been building it faithfully. Just alone. " },
   { t: "A worship leader writing songs only her living room has heard. " },
-  { t: "A producer with a sound the mainstream can't manufacture. " },
+  { t: "A producer with a sound heaven gave him. " },
   { t: "An engineer who treats every mix like it's unto the Lord. " },
   { t: "A filmmaker carrying a vision with no crew. " },
-  { t: "The gift was never the problem. " },
-  { t: "The isolation is. ", italic: true },
+  { t: "God designed us to create together. ", italic: true },
   { t: "'Two are better than one... a cord of three strands is not quickly broken.' ", italic: true, gold: true, block: true },
-  { t: "Artist, community, Creator, woven together. That's what we're building.", block: true },
+  { t: "Artist, community, Creator, woven together. That's the new way we're building for the Kingdom.", block: true },
 ];
 
 export function Problem() {
@@ -137,9 +135,9 @@ export function Problem() {
               color: T.ivory,
             }}
           >
-            The industry doesn&apos;t get your faith.
+            The gift was never the problem.
             <em style={{ display: "block", fontWeight: 300, color: "rgba(245,241,232,0.5)" }}>
-              And your craft is bigger than Sunday morning.
+              The isolation is.
             </em>
           </h2>
         </Reveal>
@@ -238,6 +236,23 @@ export function Quote() {
 
   return (
     <section style={{ position: "relative", padding: "clamp(48px, 8vw, 130px) clamp(20px, 5vw, 64px)", textAlign: "center" }}>
+      <p
+        style={{
+          position: "relative",
+          zIndex: 1,
+          margin: "0 auto clamp(40px, 6vw, 80px)",
+          maxWidth: 680,
+          fontSize: "clamp(15.5px, 1.5vw, 19px)",
+          lineHeight: 1.85,
+          color: T.muted,
+        }}
+      >
+        In this hour, we believe the Lord is advancing His Kingdom through
+        artists — <em style={{ color: T.ivory, fontStyle: "normal" }}>a renaissance of creatives displaying the glory of God
+        through their craft</em> — and creating in a way that&apos;s
+        different:{" "}
+        <em style={{ fontFamily: display, fontStyle: "italic", color: T.gold }}>together.</em>
+      </p>
       <div
         ref={glowRef}
         style={{
