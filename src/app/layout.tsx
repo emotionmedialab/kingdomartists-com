@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Playfair_Display } from "next/font/google";
+import {
+  Instrument_Sans,
+  Playfair_Display,
+  Fraunces,
+  Space_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -14,6 +19,19 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-label",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${playfair.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${playfair.variable} ${fraunces.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

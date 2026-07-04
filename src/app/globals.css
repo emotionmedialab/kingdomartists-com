@@ -347,6 +347,79 @@
   }
 }
 
+/* ───────── Kingdom Artists v5 — "Upper Room" (dark premium) ───────── */
+
+.ka5 {
+  --k-bg: #0c0a09;
+  --k-surface: #1a1714;
+  --k-border: #2a2620;
+  --k-ivory: #f5f1e8;
+  --k-muted: #a39e93;
+  --k-gold: #c9a96a;
+  --k-cta: #e2b857;
+  background: var(--k-bg);
+  color: var(--k-ivory);
+  overflow-x: clip;
+}
+.ka5 ::selection {
+  background: rgba(201, 169, 106, 0.32);
+}
+
+.ka5-cta {
+  background: var(--k-cta);
+  color: #0c0a09;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.ka5-cta:hover {
+  background: #efc96e;
+}
+.ka5-cta:active {
+  transform: scale(0.98);
+}
+
+.ka5-ghost {
+  border: 1px solid rgba(245, 241, 232, 0.28);
+  color: var(--k-ivory);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.ka5-ghost:hover {
+  border-color: var(--k-gold);
+  background: rgba(201, 169, 106, 0.08);
+}
+
+.ka5-card {
+  background: var(--k-surface);
+  border: 1px solid var(--k-border);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.ka5-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 169, 106, 0.55);
+  box-shadow: 0 28px 56px -34px rgba(201, 169, 106, 0.35);
+}
+
+.ka5-faq-item {
+  border-bottom: 1px solid var(--k-border);
+}
+.ka5-faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--k-ivory);
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: inherit;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .ka-page *,
   .ka-page *::before,
