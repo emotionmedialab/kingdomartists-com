@@ -150,7 +150,7 @@ export function Stamp({
   children,
   color = S.cobalt,
   rot = -6,
-  size = "clamp(12.5px, 1.4vw, 17px)",
+  size = "clamp(13px, 1.4vw, 17px)",
   delay = 0,
   style,
 }: {

@@ -265,7 +265,7 @@ export function EngineersNotes() {
     <Sheet>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, paddingTop: 12, marginBottom: "clamp(32px, 5vw, 64px)", flexWrap: "wrap" }}>
         <span className="ka7-label">Engineer&apos;s Notes — read before session</span>
-        <Stamp color={S.red} rot={4} size="clamp(11px, 1.1vw, 14px)">Flagged: Isolation</Stamp>
+        <Stamp color={S.red} rot={4} size="clamp(12.5px, 1.2vw, 14px)">Flagged: Isolation</Stamp>
       </div>
 
       <Ink>
@@ -414,7 +414,7 @@ export function ExhibitStudio() {
     <Sheet>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, paddingTop: 12, marginBottom: "clamp(32px, 5vw, 64px)", flexWrap: "wrap" }}>
         <span className="ka7-label">Exhibit A — the studio being booked · opens 2026</span>
-        <Stamp rot={3} size="clamp(11px, 1.1vw, 14px)">Attached</Stamp>
+        <Stamp rot={3} size="clamp(12.5px, 1.2vw, 14px)">Attached</Stamp>
       </div>
 
       <Ink>

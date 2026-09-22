@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T00:00:00Z",
+  "title": "Design System: Kingdom Artists",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#F7F6F2", "tonalRamp": ["oklch(20% 0.004 90)", "oklch(32% 0.004 90)", "oklch(45% 0.004 90)", "oklch(58% 0.004 90)", "oklch(70% 0.004 90)", "oklch(82% 0.004 90)", "oklch(92% 0.004 90)", "oklch(97% 0.004 90)"] },
+      "cobalt": { "role": "primary", "displayName": "Cobalt Form Ink", "canonical": "#1D44BE", "tonalRamp": ["oklch(20% 0.16 264)", "oklch(28% 0.19 264)", "oklch(36% 0.21 264)", "oklch(44% 0.21 264)", "oklch(55% 0.18 264)", "oklch(68% 0.13 264)", "oklch(82% 0.07 264)", "oklch(94% 0.02 264)"] },
+      "ink": { "role": "neutral", "displayName": "Near-Black Ink", "canonical": "#101318", "tonalRamp": ["oklch(15% 0.01 250)", "oklch(24% 0.01 250)", "oklch(34% 0.01 250)", "oklch(45% 0.01 250)", "oklch(58% 0.01 250)", "oklch(72% 0.008 250)", "oklch(85% 0.005 250)", "oklch(95% 0.003 250)"] },
+      "stamp-red": { "role": "tertiary", "displayName": "Stamp Red", "canonical": "#D64541", "tonalRamp": ["oklch(22% 0.1 25)", "oklch(32% 0.14 25)", "oklch(42% 0.17 25)", "oklch(52% 0.19 25)", "oklch(62% 0.18 25)", "oklch(74% 0.12 25)", "oklch(86% 0.06 25)", "oklch(95% 0.02 25)"] },
+      "rule": { "role": "neutral", "displayName": "Cobalt Rule (30%)", "canonical": "rgba(29,68,190,0.3)" },
+      "rule-soft": { "role": "neutral", "displayName": "Cobalt Rule Soft (16%)", "canonical": "rgba(29,68,190,0.16)" },
+      "faint": { "role": "neutral", "displayName": "Faint Ink", "canonical": "rgba(16,19,24,0.68)" }
+    },
+    "typographyMeta": {
+      "form-poster": { "displayName": "Form Poster Caps", "purpose": "Hero and section titles; Archivo variable at wdth 125, uppercase, one line flipped cobalt." },
+      "form-label": { "displayName": "Form Label", "purpose": "Printed field labels and section headers; cobalt, tracked, uppercase (.ka7-label)." },
+      "typed-body": { "displayName": "Typed Body", "purpose": "Courier Prime paragraphs — everything filled in by the applicant." },
+      "typed-value": { "displayName": "Typed Value", "purpose": "Ruled-field answers, often typewritten in on view (.ka7-typed)." },
+      "script-accent": { "displayName": "Script Accent", "purpose": "Fraunces italic — wordmark 'kingdom', scripture, signatures only." }
+    },
+    "shadows": [
+      { "name": "paper-lift", "value": "0 2px 0 rgba(16,19,24,0.14), 0 24px 48px -28px rgba(16,19,24,0.28)", "purpose": "Pinned exhibits (platform mockup, take counter, founder memo) sitting on the sheet." },
+      { "name": "cta-press", "value": "0 1px 0 rgba(16,19,24,0.12), 0 10px 26px -14px rgba(29,68,190,0.6)", "purpose": "Cobalt signature-block CTA at rest; deepens on hover." },
+      { "name": "punch-inset", "value": "inset 0 1px 2px rgba(16,19,24,0.18)", "purpose": "Punched holes in exhibits." }
+    ],
+    "motion": [
+      { "name": "ease-ink", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Shared easeOut for all ink reveals and lifts." },
+      { "name": "stamp-thunk", "value": "ka7-stamp 0.5s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Stamp lands: scale 1.6 -> 0.96 -> 1, fixed rotation." },
+      { "name": "caret-blink", "value": "ka7-caret 0.9s step-end infinite", "purpose": "Typewriter caret during TypeIn fill." },
+      { "name": "type-speed", "value": "26ms/char", "purpose": "TypeIn typewriter cadence; instant under prefers-reduced-motion." },
+      { "name": "counter-roll", "value": "1.1s circOut", "purpose": "Take counter digits animate 0 -> accepted once in view." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-perk", "value": "480px", "purpose": "Perk rows collapse to 22px/1fr grid." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Field Row",
+      "kind": "custom",
+      "refersTo": "field-row",
+      "description": "The sheet's atom: cobalt form label + mono typed value on a blue-ruled line.",
+      "html": "<div class=\"ds-field\"><span class=\"ds-field-label\">Personnel</span><span class=\"ds-field-value\">300 SEATS — HANDPICKED</span></div>",
+      "css": ".ds-field { display: flex; align-items: baseline; gap: 12px; padding: 10px 2px 8px; border-bottom: 1px solid rgba(29,68,190,0.3); background: #F7F6F2; } .ds-field-label { font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 118; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1D44BE; flex-shrink: 0; } .ds-field-value { font-family: var(--font-typed, 'Courier Prime'), monospace; font-size: 17px; line-height: 1.35; color: #101318; }"
+    },
+    {
+      "name": "Primary CTA (SignLink)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cobalt signature block that sits on a 2px ink signature line; carries ?ref= to /apply.",
+      "html": "<a href=\"#\" class=\"ds-cta\">Book My Seat →</a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 4px; padding: 17px 34px; font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 116; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; background: #1D44BE; color: #F7F6F2; border: 1px solid #1D44BE; transition: background 0.22s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease; box-shadow: 0 1px 0 rgba(16,19,24,0.12), 0 10px 26px -14px rgba(29,68,190,0.6); } .ds-cta:hover { background: #16359C; transform: translateY(-2px); box-shadow: 0 2px 0 rgba(16,19,24,0.1), 0 16px 34px -14px rgba(29,68,190,0.65); } .ds-cta:active { transform: translateY(0) scale(0.99); } .ds-cta:focus-visible { outline: 2px solid #1D44BE; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ruled outline button (letterhead Apply); floods cobalt on hover.",
+      "html": "<a href=\"#\" class=\"ds-ghost\">Apply</a>",
+      "css": ".ds-ghost { display: inline-block; font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 116; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 4px; padding: 9px 20px; border: 1px solid rgba(29,68,190,0.3); color: #1D44BE; background: transparent; transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease; } .ds-ghost:hover { background: #1D44BE; border-color: #1D44BE; color: #F7F6F2; } .ds-ghost:focus-visible { outline: 2px solid #1D44BE; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ink Stamp",
+      "kind": "chip",
+      "refersTo": "stamp",
+      "description": "Rotated bordered caps with fractal-noise ink grain; cobalt default, red for the rare flag.",
+      "html": "<span class=\"ds-stamp\">Hand-Picked</span>",
+      "css": ".ds-stamp { display: inline-block; font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 125; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 14px; color: #1D44BE; border: 2.5px solid currentColor; border-radius: 6px; padding: 0.3em 0.7em; transform: rotate(-6deg); mask-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.92 0.08'/%3E%3C/filter%3E%3Crect width='140' height='60' fill='white' filter='url(%23n)'/%3E%3C/svg%3E\"); mask-size: 140px 60px; }"
+    },
+    {
+      "name": "Exhibit Card",
+      "kind": "card",
+      "refersTo": "exhibit-card",
+      "description": "White exhibit pinned to the sheet: ink border, paper-lift shadow, punched holes.",
+      "html": "<div class=\"ds-exhibit\"><span class=\"ds-punch\" style=\"left:12%\"></span><span class=\"ds-punch\" style=\"right:12%\"></span><div class=\"ds-exhibit-body\">Exhibit A — attached</div></div>",
+      "css": ".ds-exhibit { position: relative; border: 1.5px solid #101318; border-radius: 6px; background: #FFFFFF; box-shadow: 0 2px 0 rgba(16,19,24,0.14), 0 24px 48px -28px rgba(16,19,24,0.28); margin-top: 10px; } .ds-punch { position: absolute; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #F7F6F2; border: 1px solid rgba(29,68,190,0.3); box-shadow: inset 0 1px 2px rgba(16,19,24,0.18); } .ds-exhibit-body { padding: 24px; font-family: var(--font-typed, 'Courier Prime'), monospace; font-size: 13px; color: #101318; }"
+    },
+    {
+      "name": "Wordmark",
+      "kind": "custom",
+      "description": "Italic Fraunces 'kingdom' + bold wide Archivo 'artists', baseline-aligned, lowercase.",
+      "html": "<span class=\"ds-wordmark\"><em class=\"ds-wm-k\">kingdom</em><span class=\"ds-wm-a\">artists</span></span>",
+      "css": ".ds-wordmark { font-size: 21px; letter-spacing: -0.02em; color: #101318; display: inline-flex; align-items: baseline; white-space: nowrap; } .ds-wm-k { font-family: var(--font-display, Fraunces), Georgia, serif; font-style: italic; font-weight: 400; } .ds-wm-a { font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 110; font-weight: 700; }"
+    },
+    {
+      "name": "Form Label",
+      "kind": "custom",
+      "refersTo": "form-label",
+      "description": "The printed label voice; opens every section (label left, stamp right).",
+      "html": "<span class=\"ds-label\">Routing — how this sheet gets processed</span>",
+      "css": ".ds-label { font-family: var(--font-form, Archivo), sans-serif; font-variation-settings: 'wdth' 118; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1D44BE; }"
+    },
+    {
+      "name": "Apply Input",
+      "kind": "input",
+      "description": "Frameless centered typewriter input on a 2px ink underline, cobalt caret (apply flow).",
+      "html": "<input class=\"ds-input\" placeholder=\"Your name\" />",
+      "css": ".ds-input { appearance: none; width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 2px solid #101318; padding: 12px 0 16px; font-family: var(--font-typed, 'Courier Prime'), monospace; font-size: 34px; font-weight: 400; letter-spacing: -0.01em; color: #101318; caret-color: #1D44BE; outline: none; text-align: center; } .ds-input:focus-visible { border-bottom-color: #1D44BE; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Session Sheet",
+    "overview": "The page is a studio booking document. Applying to Kingdom Artists is being booked for the session of your life, so every surface reads as one continuous session sheet set poster-grade: a letterhead nav, a giant form title, blue-ruled field rows with typewritten-in values, routing stamps, punched tabs, and a signature line that is the CTA. The world is legible with all content removed — a beautiful blank form.\n\nEverything is paper and ink. There are no photographic backgrounds, no gradients, no washes; depth exists only where a physical exhibit is pinned to the sheet (white card, thin ink border, paper-lift shadow). Every interactive or revealed state is an ink event — typed, stamped, drawn, ruled, punched, flagged — never a new hue, never a glow.",
+    "keyCharacteristics": [
+      "Four inks only; all other values are dilutions of cobalt or ink.",
+      "Three type voices with strict jobs: form caps, typewriter, serif italic.",
+      "Form vocabulary as component set: ruled fields, stamps, signature lines, take counters.",
+      "Motion is orchestration of ink landing on paper, once per element, on scroll.",
+      "Sacred = restraint: never churchy, never ornamental."
+    ],
+    "rules": [
+      { "name": "The Four-Ink Rule", "body": "Paper, cobalt, ink, stamp red — nothing else. A new state, emphasis, or component earns a dilution of an existing ink, never a fifth color.", "section": "colors" },
+      { "name": "The One Red Rule", "body": "Stamp red appears at most once per view, always as a stamp.", "section": "colors" },
+      { "name": "The Three Voices Rule", "body": "Archivo speaks as the form, Courier Prime as the person filling it in, Fraunces italic as the hand that signs it. No voice does another's job; Fraunces never sets UI or body copy.", "section": "typography" },
+      { "name": "The Ink Event Rule", "body": "Every state change is an ink event — typed, stamped, drawn, ruled, punched, flagged — never a new hue, glow, gradient, or parallax.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do state every state change as an ink event: type it in, stamp it down, draw the line, punch the hole.",
+      "Do open every section with a 2px cobalt rule and a form-label header row (label left, optional stamp right).",
+      "Do keep motion once-per-element (useInView/whileInView with once: true) on the shared ease cubic-bezier(0.16, 1, 0.3, 1), and honor prefers-reduced-motion.",
+      "Do carry the ?ref= query into /apply from every CTA (SignLink handles it).",
+      "Do flip exactly one line of a multi-line poster title to cobalt.",
+      "Do draw icons as single-weight SVG strokes in cobalt or faint."
+    ],
+    "donts": [
+      "Don't introduce a fifth color, gradient, glow, or parallax wash; tints must be dilutions of cobalt or ink.",
+      "Don't use stamp red more than once per view, or for anything but a stamp.",
+      "Don't let Fraunces set body copy, labels, or UI — it is the wordmark's kingdom, scripture, and signatures only.",
+      "Don't cast shadows on the sheet itself; shadows belong only to objects pinned onto it (exhibits, the CTA).",
+      "Don't reach for churchy ornament (doves, crosses, purple gradients, stock worship photography) — sacred is restraint.",
+      "Don't show applied counts as 'filled' seats; the counter's solid ink is accepted members only."
+    ]
+  }
+}

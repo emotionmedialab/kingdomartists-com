@@ -492,7 +492,7 @@
   --sheet-red: #d64541;
   --sheet-rule: rgba(29, 68, 190, 0.3);
   --sheet-rule-soft: rgba(29, 68, 190, 0.16);
-  --sheet-faint: rgba(16, 19, 24, 0.56);
+  --sheet-faint: rgba(16, 19, 24, 0.68);
   background: var(--sheet-paper);
   color: var(--sheet-ink);
   overflow-x: clip;

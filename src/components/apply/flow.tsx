@@ -346,7 +346,7 @@ export function ApplyFlow() {
               fontSize: 11,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(16,19,24,0.62)",
+              color: "rgba(16,19,24,0.72)",
             }}
           >
             <span style={{ fontFamily: serif, fontSize: 16, color: "#1D44BE" }}>
@@ -419,19 +419,15 @@ export function ApplyFlow() {
                   fontVariationSettings: '"wdth" 125',
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  fontSize: "clamp(36px, 6vw, 84px)",
+                  fontSize: "clamp(30px, 4.4vw, 62px)",
                   lineHeight: 0.98,
                   letterSpacing: "-0.01em",
                 }}
               >
-                You didn&apos;t find this sheet{" "}
-                <em
-                  style={{
-                    display: "block",
-                    fontStyle: "normal",
-                    color: "#1D44BE",
-                  }}
-                >
+                You didn&apos;t find
+                <br />
+                this sheet{" "}
+                <em style={{ fontStyle: "normal", color: "#1D44BE" }}>
                   by accident.
                 </em>
               </h1>
@@ -441,7 +437,7 @@ export function ApplyFlow() {
                   maxWidth: 460,
                   fontSize: 15.5,
                   lineHeight: 1.75,
-                  color: "rgba(16,19,24,0.55)",
+                  color: "rgba(16,19,24,0.72)",
                 }}
               >
                 {vouched
@@ -715,7 +711,7 @@ export function ApplyFlow() {
                       {String(seconds % 60).padStart(2, "0")} — tap to stop
                     </button>
                     <span
-                      style={{ fontSize: 12, color: "rgba(16,19,24,0.6)" }}
+                      style={{ fontSize: 12, color: "rgba(16,19,24,0.72)" }}
                     >
                       Max {MAX_RECORD_SECONDS} seconds
                     </span>
@@ -740,7 +736,7 @@ export function ApplyFlow() {
                       style={{
                         border: "none",
                         background: "transparent",
-                        color: "rgba(16,19,24,0.55)",
+                        color: "rgba(16,19,24,0.72)",
                         fontFamily: "inherit",
                         fontSize: 13,
                         textDecoration: "underline",
@@ -756,7 +752,7 @@ export function ApplyFlow() {
                     style={{
                       margin: 0,
                       fontSize: 14,
-                      color: "rgba(16,19,24,0.55)",
+                      color: "rgba(16,19,24,0.72)",
                     }}
                   >
                     We couldn&apos;t access your microphone. You can still
@@ -805,7 +801,7 @@ export function ApplyFlow() {
                   style={{
                     margin: "18px 0 0",
                     fontSize: 11.5,
-                    color: "rgba(16,19,24,0.58)",
+                    color: "rgba(16,19,24,0.72)",
                   }}
                 >
                   The voice note is optional — but it&apos;s the part we listen
@@ -874,7 +870,7 @@ export function ApplyFlow() {
                   maxWidth: 440,
                   fontSize: 15.5,
                   lineHeight: 1.75,
-                  color: "rgba(16,19,24,0.55)",
+                  color: "rgba(16,19,24,0.72)",
                   opacity: 0,
                   animation: `ka-fade 0.8s ${easeOut} 1.45s forwards`,
                 }}
@@ -908,7 +904,7 @@ export function ApplyFlow() {
             padding: "0 20px 28px",
             textAlign: "center",
             fontSize: 12,
-            color: "rgba(16,19,24,0.58)",
+            color: "rgba(16,19,24,0.72)",
           }}
         >
           {vouched
@@ -1021,7 +1017,7 @@ function QuestionShell({
           style={{
             margin: "0 0 8px",
             fontSize: 13,
-            color: "rgba(16,19,24,0.62)",
+            color: "rgba(16,19,24,0.72)",
           }}
         >
           {subtitle}
@@ -1056,10 +1052,10 @@ function QuestionShell({
         style={{
           margin: "18px 0 0",
           fontSize: 11.5,
-          color: "rgba(16,19,24,0.58)",
+          color: "rgba(16,19,24,0.72)",
         }}
       >
-        press <span style={{ color: "rgba(16,19,24,0.55)" }}>Enter ↵</span>{" "}
+        press <span style={{ color: "rgba(16,19,24,0.72)" }}>Enter ↵</span>{" "}
         to continue
       </p>
     </div>

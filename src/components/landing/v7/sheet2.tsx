@@ -115,7 +115,7 @@ export function Personnel() {
     <Sheet>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, paddingTop: 12, marginBottom: "clamp(32px, 5vw, 64px)", flexWrap: "wrap" }}>
         <span className="ka7-label">Personnel — limited to three hundred</span>
-        <Stamp rot={-4} size="clamp(11px, 1.1vw, 14px)">Hand-Picked</Stamp>
+        <Stamp rot={-4} size="clamp(12.5px, 1.2vw, 14px)">Hand-Picked</Stamp>
       </div>
 
       <div
@@ -257,7 +257,7 @@ export function FounderMemo() {
                 </p>
                 <p className="ka7-label" style={{ margin: "6px 0 0" }}>Founders · Kingdom Artists</p>
               </div>
-              <Stamp rot={5} size="clamp(11px, 1.1vw, 14px)">Signed</Stamp>
+              <Stamp rot={5} size="clamp(12.5px, 1.2vw, 14px)">Signed</Stamp>
             </div>
           </div>
         </Ink>
