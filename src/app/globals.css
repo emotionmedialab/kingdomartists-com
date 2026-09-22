@@ -480,3 +480,141 @@
     display: none !important;
   }
 }
+
+/* ═════════ Kingdom Artists v7 — THE SESSION SHEET ═════════
+   Four inks only: paper, cobalt, near-black, stamp red.
+   Every state is an ink event: ruled, typed, stamped, punched. */
+
+.ka7 {
+  --sheet-paper: #f7f6f2;
+  --sheet-cobalt: #1d44be;
+  --sheet-ink: #101318;
+  --sheet-red: #d64541;
+  --sheet-rule: rgba(29, 68, 190, 0.3);
+  --sheet-rule-soft: rgba(29, 68, 190, 0.16);
+  --sheet-faint: rgba(16, 19, 24, 0.56);
+  background: var(--sheet-paper);
+  color: var(--sheet-ink);
+  overflow-x: clip;
+  caret-color: var(--sheet-cobalt);
+}
+.ka7 ::selection {
+  background: rgba(29, 68, 190, 0.85);
+  color: #f7f6f2;
+}
+.ka7 :focus-visible {
+  outline: 2px solid var(--sheet-cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.ka7 ::-webkit-scrollbar-thumb {
+  background: rgba(29, 68, 190, 0.4);
+}
+
+/* form label voice */
+.ka7-label {
+  font-family: var(--font-form), sans-serif;
+  font-variation-settings: "wdth" 118;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sheet-cobalt);
+}
+
+/* typed-in value voice */
+.ka7-typed {
+  font-family: var(--font-typed), monospace;
+  color: var(--sheet-ink);
+}
+
+/* ruled field row */
+.ka7-row {
+  border-bottom: 1px solid var(--sheet-rule);
+}
+
+/* cobalt CTA — a filled signature block, squared like a form field */
+.ka7-cta {
+  background: var(--sheet-cobalt);
+  color: #f7f6f2;
+  border: 1px solid var(--sheet-cobalt);
+  transition:
+    background 0.22s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+  box-shadow: 0 1px 0 rgba(16, 19, 24, 0.12), 0 10px 26px -14px rgba(29, 68, 190, 0.6);
+}
+.ka7-cta:hover {
+  background: #16359c;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 0 rgba(16, 19, 24, 0.1), 0 16px 34px -14px rgba(29, 68, 190, 0.65);
+}
+.ka7-cta:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.ka7-ghost {
+  border: 1px solid var(--sheet-rule);
+  color: var(--sheet-cobalt);
+  background: transparent;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+.ka7-ghost:hover {
+  background: var(--sheet-cobalt);
+  border-color: var(--sheet-cobalt);
+  color: #f7f6f2;
+}
+
+/* ink stamp */
+@keyframes ka7-stamp {
+  0% { opacity: 0; transform: scale(1.6) rotate(var(--stamp-rot, -6deg)); }
+  62% { opacity: 1; transform: scale(0.96) rotate(var(--stamp-rot, -6deg)); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--stamp-rot, -6deg)); }
+}
+.ka7-stamp {
+  display: inline-block;
+  font-family: var(--font-form), sans-serif;
+  font-variation-settings: "wdth" 125;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  padding: 0.3em 0.7em;
+  transform: rotate(var(--stamp-rot, -6deg));
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.92 0.08'/%3E%3C/filter%3E%3Crect width='140' height='60' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size: 140px 60px;
+}
+
+/* typewriter caret */
+@keyframes ka7-caret {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* punched hole */
+.ka7-punch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sheet-paper);
+  border: 1px solid var(--sheet-rule);
+  box-shadow: inset 0 1px 2px rgba(16, 19, 24, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ka7 *, .ka7 *::before, .ka7 *::after {
+    animation-duration: 0.001s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ka7-perk {
+    grid-template-columns: 22px 1fr !important;
+  }
+  .ka7-perk > span:last-child {
+    grid-column: 2;
+  }
+}

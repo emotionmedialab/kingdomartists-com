@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useSearchParams } from "next/navigation";
 
-const serif = "var(--font-heading), Georgia, serif";
+const serif = "var(--font-form), sans-serif";
 const easeOut = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 const CREATIVE_TYPES = [
@@ -54,14 +54,14 @@ const bigInputStyle: CSSProperties = {
   boxSizing: "border-box",
   background: "transparent",
   border: "none",
-  borderBottom: "1px solid rgba(244,239,229,0.22)",
+  borderBottom: "2px solid #101318",
   padding: "12px 0 16px",
-  fontFamily: serif,
+  fontFamily: "var(--font-typed), monospace",
   fontSize: "clamp(28px, 4.5vw, 56px)",
   fontWeight: 400,
   letterSpacing: "-0.01em",
-  color: "#F4EFE5",
-  caretColor: "#E0B45C",
+  color: "#101318",
+  caretColor: "#1D44BE",
   outline: "none",
   textAlign: "center",
 };
@@ -289,16 +289,16 @@ export function ApplyFlow() {
 
   return (
     <div
-      className="ka-page"
+      className="ka7"
       onKeyDown={onKeyDown}
       style={{
         minHeight: "100dvh",
-        background: "#121009",
+        background: "#F7F6F2",
         backgroundImage:
-          "radial-gradient(1000px 600px at 50% -10%, rgba(224,180,92,0.12), transparent 65%)",
+          "repeating-linear-gradient(180deg, transparent 0 46px, rgba(29,68,190,0.05) 46px 47px)",
         display: "flex",
         flexDirection: "column",
-        color: "#F4EFE5",
+        color: "#101318",
       }}
     >
       <div className="ka-grain" />
@@ -312,15 +312,17 @@ export function ApplyFlow() {
           right: 0,
           height: 2,
           zIndex: 90,
-          background: "rgba(244,239,229,0.08)",
+          background: "rgba(16,19,24,0.08)",
         }}
       >
         <div
           style={{
-            width: `${(step === "done" ? 1 : progress) * 100}%`,
+            width: "100%",
+            transform: `scaleX(${step === "done" ? 1 : progress})`,
+            transformOrigin: "left",
             height: "100%",
-            background: "#B8872B",
-            transition: "width 0.5s " + easeOut,
+            background: "#1D44BE",
+            transition: "transform 0.5s " + easeOut,
           }}
         />
       </div>
@@ -334,17 +336,9 @@ export function ApplyFlow() {
           padding: "clamp(16px, 2.5vw, 28px) clamp(20px, 5vw, 64px)",
         }}
       >
-        <a
-          href="/"
-          style={{
-            fontFamily: serif,
-            fontWeight: 500,
-            fontSize: "clamp(17px, 1.5vw, 21px)",
-            color: "#F4EFE5",
-            textDecoration: "none",
-          }}
-        >
-          Kingdom Artists
+        <a href="/" style={{ textDecoration: "none", color: "#101318", fontSize: "clamp(17px, 1.5vw, 21px)", display: "inline-flex", alignItems: "baseline" }}>
+          <em style={{ fontFamily: "var(--font-display), Georgia, serif", fontStyle: "italic", fontWeight: 400 }}>kingdom</em>
+          <span style={{ fontFamily: "var(--font-form), sans-serif", fontWeight: 700 }}>artists</span>
         </a>
         {step !== "done" && step !== "intro" && (
           <span
@@ -352,10 +346,10 @@ export function ApplyFlow() {
               fontSize: 11,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(244,239,229,0.4)",
+              color: "rgba(16,19,24,0.62)",
             }}
           >
-            <span style={{ fontFamily: serif, fontSize: 16, color: "#E0B45C" }}>
+            <span style={{ fontFamily: serif, fontSize: 16, color: "#1D44BE" }}>
               {String(stepIndex).padStart(2, "0")}
             </span>{" "}
             / {String(NUMBERED).padStart(2, "0")}
@@ -388,15 +382,15 @@ export function ApplyFlow() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 8,
-                    border: "1px solid rgba(224,180,92,0.5)",
-                    background: "rgba(224,180,92,0.08)",
-                    borderRadius: 999,
+                    border: "1px solid rgba(29,68,190,0.5)",
+                    background: "rgba(29,68,190,0.08)",
+                    borderRadius: 4,
                     padding: "10px 20px",
                     marginBottom: 28,
                     fontSize: 12.5,
                     fontWeight: 600,
                     letterSpacing: "0.06em",
-                    color: "#E0B45C",
+                    color: "#1D44BE",
                   }}
                 >
                   <span
@@ -405,47 +399,37 @@ export function ApplyFlow() {
                       width: 18,
                       height: 18,
                       borderRadius: "50%",
-                      background: "#E0B45C",
-                      color: "#16140F",
+                      background: "#1D44BE",
+                      color: "#F7F6F2",
                       alignItems: "center",
                       justifyContent: "center",
                       fontSize: 11,
                       fontWeight: 700,
                     }}
                   >
-                    ✓
+                    <svg width="10" height="10" viewBox="0 0 14 14" fill="none" stroke="#F7F6F2" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M2 7.5 L5.5 11 L12 3.5" /></svg>
                   </span>
                   Vouched by {referrerName} · Fast-tracked
                 </div>
               )}
-              <p
-                style={{
-                  margin: "0 0 24px",
-                  fontSize: 11.5,
-                  fontWeight: 600,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: "#E0B45C",
-                }}
-              >
-                For Such a Time as This
-              </p>
               <h1
                 style={{
                   margin: "0 0 24px",
                   fontFamily: serif,
-                  fontWeight: 500,
-                  fontSize: "clamp(40px, 6.5vw, 88px)",
-                  lineHeight: 1.06,
-                  letterSpacing: "-0.02em",
+                  fontVariationSettings: '"wdth" 125',
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  fontSize: "clamp(36px, 6vw, 84px)",
+                  lineHeight: 0.98,
+                  letterSpacing: "-0.01em",
                 }}
               >
-                You didn&apos;t find this page{" "}
+                You didn&apos;t find this sheet{" "}
                 <em
                   style={{
                     display: "block",
-                    fontWeight: 400,
-                    color: "rgba(244,239,229,0.7)",
+                    fontStyle: "normal",
+                    color: "#1D44BE",
                   }}
                 >
                   by accident.
@@ -457,7 +441,7 @@ export function ApplyFlow() {
                   maxWidth: 460,
                   fontSize: 15.5,
                   lineHeight: 1.75,
-                  color: "rgba(244,239,229,0.55)",
+                  color: "rgba(16,19,24,0.55)",
                 }}
               >
                 {vouched
@@ -561,13 +545,13 @@ export function ApplyFlow() {
                       }}
                       style={{
                         border: active
-                          ? "1px solid #E0B45C"
-                          : "1px solid rgba(244,239,229,0.22)",
+                          ? "1px solid #1D44BE"
+                          : "1px solid rgba(16,19,24,0.22)",
                         background: active
-                          ? "rgba(224,180,92,0.12)"
-                          : "rgba(255,255,255,0.03)",
-                        color: active ? "#E0B45C" : "rgba(244,239,229,0.75)",
-                        borderRadius: 999,
+                          ? "rgba(29,68,190,0.12)"
+                          : "rgba(29,68,190,0.04)",
+                        color: active ? "#1D44BE" : "rgba(16,19,24,0.75)",
+                        borderRadius: 4,
                         padding: "13px 22px",
                         fontFamily: "inherit",
                         fontSize: 14,
@@ -658,7 +642,7 @@ export function ApplyFlow() {
                   fontWeight: 600,
                   letterSpacing: "0.22em",
                   textTransform: "uppercase",
-                  color: "#E0B45C",
+                  color: "#1D44BE",
                 }}
               >
                 One Last Thing — In Your Own Voice
@@ -667,11 +651,13 @@ export function ApplyFlow() {
                 style={{
                   margin: "0 0 10px",
                   fontFamily: serif,
-                  fontWeight: 500,
+                  fontVariationSettings: '"wdth" 118',
+                  fontWeight: 700,
+                  textTransform: "uppercase",
                   fontSize: "clamp(34px, 5.5vw, 72px)",
                   lineHeight: 1.1,
                   letterSpacing: "-0.02em",
-                  color: "#F4EFE5",
+                  color: "#101318",
                 }}
               >
                 {VOICE_QUESTION}
@@ -680,7 +666,7 @@ export function ApplyFlow() {
                 style={{
                   margin: "0 0 36px",
                   fontSize: 13.5,
-                  color: "rgba(244,239,229,0.45)",
+                  color: "#1D44BE",
                 }}
               >
                 {VOICE_WHISPER}
@@ -693,12 +679,12 @@ export function ApplyFlow() {
                     onClick={startRecording}
                     style={{
                       ...recBtnBase,
-                      border: "1px solid rgba(224,180,92,0.5)",
-                      background: "rgba(224,180,92,0.08)",
-                      color: "#E0B45C",
+                      border: "1px solid rgba(29,68,190,0.5)",
+                      background: "rgba(29,68,190,0.08)",
+                      color: "#1D44BE",
                     }}
                   >
-                    <span style={recDot("#E0B45C")} /> Tap to record
+                    <span style={recDot("#1D44BE")} /> Tap to record
                   </button>
                 )}
                 {recState === "recording" && (
@@ -714,14 +700,14 @@ export function ApplyFlow() {
                       onClick={stopRecording}
                       style={{
                         ...recBtnBase,
-                        border: "1px solid rgba(224,92,92,0.6)",
-                        background: "rgba(224,92,92,0.1)",
-                        color: "#E07B5C",
+                        border: "1px solid rgba(214,69,65,0.6)",
+                        background: "rgba(214,69,65,0.1)",
+                        color: "#D64541",
                       }}
                     >
                       <span
                         style={{
-                          ...recDot("#E05C5C"),
+                          ...recDot("#D64541"),
                           animation: "ka-tickpulse 1.2s ease-in-out infinite",
                         }}
                       />
@@ -729,7 +715,7 @@ export function ApplyFlow() {
                       {String(seconds % 60).padStart(2, "0")} — tap to stop
                     </button>
                     <span
-                      style={{ fontSize: 12, color: "rgba(244,239,229,0.35)" }}
+                      style={{ fontSize: 12, color: "rgba(16,19,24,0.6)" }}
                     >
                       Max {MAX_RECORD_SECONDS} seconds
                     </span>
@@ -754,7 +740,7 @@ export function ApplyFlow() {
                       style={{
                         border: "none",
                         background: "transparent",
-                        color: "rgba(244,239,229,0.55)",
+                        color: "rgba(16,19,24,0.55)",
                         fontFamily: "inherit",
                         fontSize: 13,
                         textDecoration: "underline",
@@ -770,7 +756,7 @@ export function ApplyFlow() {
                     style={{
                       margin: 0,
                       fontSize: 14,
-                      color: "rgba(244,239,229,0.55)",
+                      color: "rgba(16,19,24,0.55)",
                     }}
                   >
                     We couldn&apos;t access your microphone. You can still
@@ -781,7 +767,7 @@ export function ApplyFlow() {
 
               {error && (
                 <p
-                  style={{ margin: "0 0 20px", fontSize: 13.5, color: "#E0B45C" }}
+                  style={{ margin: "0 0 20px", fontSize: 13.5, color: "#1D44BE" }}
                 >
                   {error}
                 </p>
@@ -803,7 +789,8 @@ export function ApplyFlow() {
                   disabled={submitting || recState === "recording"}
                   style={{
                     ...primaryBtn,
-                    opacity: submitting || recState === "recording" ? 0.6 : 1,
+                    opacity: submitting || recState === "recording" ? 0.45 : 1,
+                    cursor: submitting || recState === "recording" ? "not-allowed" : "pointer",
                   }}
                 >
                   {submitting
@@ -818,7 +805,7 @@ export function ApplyFlow() {
                   style={{
                     margin: "18px 0 0",
                     fontSize: 11.5,
-                    color: "rgba(244,239,229,0.3)",
+                    color: "rgba(16,19,24,0.58)",
                   }}
                 >
                   The voice note is optional — but it&apos;s the part we listen
@@ -841,7 +828,7 @@ export function ApplyFlow() {
                   cy="46"
                   r="44"
                   fill="none"
-                  stroke="rgba(224,180,92,0.4)"
+                  stroke="rgba(29,68,190,0.4)"
                   strokeWidth="1.5"
                   style={{
                     strokeDasharray: 277,
@@ -852,7 +839,7 @@ export function ApplyFlow() {
                 <path
                   d="M30 47 L42 59 L63 35"
                   fill="none"
-                  stroke="#E0B45C"
+                  stroke="#1D44BE"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -867,7 +854,9 @@ export function ApplyFlow() {
                 style={{
                   margin: "0 0 20px",
                   fontFamily: serif,
-                  fontWeight: 500,
+                  fontVariationSettings: '"wdth" 118',
+                  fontWeight: 700,
+                  textTransform: "uppercase",
                   fontSize: "clamp(34px, 4.6vw, 64px)",
                   lineHeight: 1.1,
                   letterSpacing: "-0.02em",
@@ -885,7 +874,7 @@ export function ApplyFlow() {
                   maxWidth: 440,
                   fontSize: 15.5,
                   lineHeight: 1.75,
-                  color: "rgba(244,239,229,0.55)",
+                  color: "rgba(16,19,24,0.55)",
                   opacity: 0,
                   animation: `ka-fade 0.8s ${easeOut} 1.45s forwards`,
                 }}
@@ -919,7 +908,7 @@ export function ApplyFlow() {
             padding: "0 20px 28px",
             textAlign: "center",
             fontSize: 12,
-            color: "rgba(244,239,229,0.3)",
+            color: "rgba(16,19,24,0.58)",
           }}
         >
           {vouched
@@ -934,9 +923,9 @@ export function ApplyFlow() {
 const primaryBtn: CSSProperties = {
   border: "none",
   cursor: "pointer",
-  background: "#F4EFE5",
-  color: "#16140F",
-  borderRadius: 999,
+  background: "#1D44BE",
+  color: "#F7F6F2",
+  borderRadius: 4,
   padding: "18px 44px",
   fontFamily: "inherit",
   fontSize: 14,
@@ -946,10 +935,10 @@ const primaryBtn: CSSProperties = {
 };
 
 const backBtn: CSSProperties = {
-  border: "1px solid rgba(244,239,229,0.25)",
+  border: "1px solid rgba(16,19,24,0.25)",
   background: "transparent",
-  color: "rgba(244,239,229,0.65)",
-  borderRadius: 999,
+  color: "rgba(16,19,24,0.65)",
+  borderRadius: 4,
   padding: "16px 26px",
   fontFamily: "inherit",
   fontSize: 13,
@@ -963,7 +952,7 @@ const recBtnBase: CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
   gap: 12,
-  borderRadius: 999,
+  borderRadius: 4,
   padding: "18px 36px",
   fontFamily: "inherit",
   fontSize: 14,
@@ -989,7 +978,7 @@ const socialLabel: CSSProperties = {
   fontWeight: 600,
   letterSpacing: "0.2em",
   textTransform: "uppercase",
-  color: "rgba(244,239,229,0.45)",
+  color: "#1D44BE",
   textAlign: "center",
 };
 
@@ -1022,7 +1011,7 @@ function QuestionShell({
           fontSize: "clamp(26px, 3.6vw, 48px)",
           lineHeight: 1.15,
           letterSpacing: "-0.015em",
-          color: "#F4EFE5",
+          color: "#101318",
         }}
       >
         {title}
@@ -1032,7 +1021,7 @@ function QuestionShell({
           style={{
             margin: "0 0 8px",
             fontSize: 13,
-            color: "rgba(244,239,229,0.4)",
+            color: "rgba(16,19,24,0.62)",
           }}
         >
           {subtitle}
@@ -1040,7 +1029,7 @@ function QuestionShell({
       )}
       <div style={{ margin: "clamp(24px, 4vh, 44px) 0" }}>{children}</div>
       {error && (
-        <p style={{ margin: "0 0 20px", fontSize: 13.5, color: "#E0B45C" }}>
+        <p style={{ margin: "0 0 20px", fontSize: 13.5, color: "#1D44BE" }}>
           {error}
         </p>
       )}
@@ -1058,7 +1047,7 @@ function QuestionShell({
         <button
           onClick={onNext}
           disabled={nextDisabled}
-          style={{ ...primaryBtn, opacity: nextDisabled ? 0.7 : 1 }}
+          style={{ ...primaryBtn, opacity: nextDisabled ? 0.45 : 1, cursor: nextDisabled ? "not-allowed" : "pointer", filter: nextDisabled ? "grayscale(0.4)" : "none" }}
         >
           {nextLabel}
         </button>
@@ -1067,10 +1056,10 @@ function QuestionShell({
         style={{
           margin: "18px 0 0",
           fontSize: 11.5,
-          color: "rgba(244,239,229,0.3)",
+          color: "rgba(16,19,24,0.58)",
         }}
       >
-        press <span style={{ color: "rgba(244,239,229,0.55)" }}>Enter ↵</span>{" "}
+        press <span style={{ color: "rgba(16,19,24,0.55)" }}>Enter ↵</span>{" "}
         to continue
       </p>
     </div>

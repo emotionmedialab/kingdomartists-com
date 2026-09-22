@@ -4,6 +4,8 @@ import {
   Playfair_Display,
   Fraunces,
   Space_Grotesk,
+  Archivo,
+  Courier_Prime,
 } from "next/font/google";
 import "./globals.css";
 
@@ -34,6 +36,19 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600"],
 });
 
+const archivo = Archivo({
+  variable: "--font-form",
+  subsets: ["latin"],
+  axes: ["wdth"],
+});
+
+const courierPrime = Courier_Prime({
+  variable: "--font-typed",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: "Kingdom Artists — The Home for Kingdom Creatives",
   description:
@@ -54,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${playfair.variable} ${fraunces.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${playfair.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${archivo.variable} ${courierPrime.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
