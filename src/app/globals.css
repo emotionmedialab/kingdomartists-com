@@ -48,6 +48,16 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --color-warm: var(--warm);
   --color-warm-foreground: var(--warm-foreground);
+  /* Kingdom Artists design-system tokens (expose as utilities: bg-gold, text-paper, border-line…) */
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-paper: var(--paper);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-green: var(--green);
   --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   --animate-gradient: gradient 8s linear infinite;
@@ -119,40 +129,55 @@
 }
 
 :root {
-  --background: oklch(0.98 0.002 80);
-  --foreground: oklch(0.13 0.01 60);
-  --card: oklch(0.99 0.002 80);
-  --card-foreground: oklch(0.13 0.01 60);
-  --popover: oklch(0.99 0.002 80);
-  --popover-foreground: oklch(0.13 0.01 60);
-  --primary: oklch(0.18 0.01 60);
-  --primary-foreground: oklch(0.98 0.002 80);
-  --secondary: oklch(0.95 0.005 80);
-  --secondary-foreground: oklch(0.18 0.01 60);
-  --muted: oklch(0.94 0.005 80);
-  --muted-foreground: oklch(0.48 0.01 60);
-  --accent: oklch(0.94 0.005 80);
-  --accent-foreground: oklch(0.18 0.01 60);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.90 0.005 80);
-  --input: oklch(0.90 0.005 80);
-  --ring: oklch(0.60 0.01 60);
+  /* ===== Kingdom Artists — dark editorial system ===== */
+  /* Raw palette tokens (mirrors .shots/explore/v2/_system.css) */
+  --bg: #0c0b0d;
+  --bg2: #161318;
+  --bg3: #1d1922;
+  --paper: #ece7dd;
+  --muted-text: #928c83;
+  --faint: #5d574f;
+  --line: rgba(236, 231, 221, 0.12);
+  --line2: rgba(236, 231, 221, 0.22);
+  --gold: #d8a44c;
+  --gold-soft: #ecca8a;
+  --green: #5fcf80;
+
+  /* shadcn semantic tokens mapped onto the palette */
+  --background: #0c0b0d;
+  --foreground: #ece7dd;
+  --card: #161318;
+  --card-foreground: #ece7dd;
+  --popover: #161318;
+  --popover-foreground: #ece7dd;
+  --primary: #d8a44c;
+  --primary-foreground: #1c1206;
+  --secondary: #1d1922;
+  --secondary-foreground: #ece7dd;
+  --muted: #161318;
+  --muted-foreground: #928c83;
+  --accent: #d8a44c;
+  --accent-foreground: #1c1206;
+  --destructive: oklch(0.62 0.21 25);
+  --border: rgba(236, 231, 221, 0.12);
+  --input: rgba(236, 231, 221, 0.12);
+  --ring: #d8a44c;
   --radius: 0.75rem;
-  --warm: oklch(0.96 0.01 70);
-  --warm-foreground: oklch(0.30 0.02 60);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --warm: #1d1922;
+  --warm-foreground: #ece7dd;
+  --chart-1: #d8a44c;
+  --chart-2: #ecca8a;
+  --chart-3: #928c83;
+  --chart-4: #5d574f;
+  --chart-5: #5fcf80;
+  --sidebar: #0c0b0d;
+  --sidebar-foreground: #ece7dd;
+  --sidebar-primary: #d8a44c;
+  --sidebar-primary-foreground: #1c1206;
+  --sidebar-accent: #161318;
+  --sidebar-accent-foreground: #ece7dd;
+  --sidebar-border: rgba(236, 231, 221, 0.12);
+  --sidebar-ring: #d8a44c;
 }
 
 @layer base {
@@ -173,12 +198,87 @@
   }
 }
 
+/* ===== Kingdom Artists design-system atoms (mirror _system.css) ===== */
+@layer components {
+  /* Serif = brand & hierarchy moments only. Optical sizing for display. */
+  .serif {
+    font-family: var(--font-heading), "Fraunces", serif;
+    font-optical-sizing: auto;
+  }
+  /* Editorial eyebrow / metadata caps */
+  .cap {
+    font-family: var(--font-sans), "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  /* Wordmark + verified glyph accent */
+  .brand-mark {
+    color: var(--gold);
+    font-style: normal;
+  }
+  /* Pill buttons */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    padding: 12px 24px;
+    white-space: nowrap;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .pill-gold {
+    background: var(--gold);
+    color: #1c1206;
+  }
+  .pill-gold:hover {
+    background: var(--gold-soft);
+  }
+  .pill-ghost {
+    border: 1px solid var(--line2);
+    color: var(--paper);
+    background: transparent;
+  }
+  .pill-ghost:hover {
+    border-color: var(--paper);
+  }
+  .pill-paper {
+    background: var(--paper);
+    color: #1c1206;
+  }
+  .pill:active {
+    transform: scale(0.97);
+  }
+  /* "Open to collaborate" status dot — green only, never the gold accent */
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 9px var(--green);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+}
+
 ::selection {
-  background: oklch(0.75 0.08 280 / 0.3);
+  background: rgba(216, 164, 76, 0.28);
+  color: var(--paper);
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -186,8 +286,21 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.7 0 0 / 0.3);
-  border-radius: 3px;
+  background: rgba(236, 231, 221, 0.14);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(236, 231, 221, 0.24);
+}
+
+/* Hide scrollbar for horizontal pill rails */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes float {

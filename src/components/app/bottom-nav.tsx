@@ -17,7 +17,7 @@ export function BottomNav() {
   const unreadCount = MOCK_CONVERSATIONS.filter((c) => c.unread).length;
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-t border-border/20 pb-[env(safe-area-inset-bottom)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-xl border-t border-line pb-[env(safe-area-inset-bottom)]">
       <div className="flex items-center justify-around h-14">
         {tabs.map((tab) => {
           const isActive =
@@ -29,7 +29,7 @@ export function BottomNav() {
               href={tab.href}
               className={cn(
                 "relative flex flex-col items-center gap-0.5 px-5 py-1.5 transition-colors",
-                isActive ? "text-foreground" : "text-muted-foreground/40"
+                isActive ? "text-gold" : "text-muted-foreground/50"
               )}
             >
               <div className="relative">
@@ -37,7 +37,7 @@ export function BottomNav() {
                   className={cn("w-5 h-5", isActive && "stroke-[2.5]")}
                 />
                 {tab.href === "/messages" && unreadCount > 0 && (
-                  <div className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full bg-foreground text-background text-[9px] font-bold flex items-center justify-center">
+                  <div className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full bg-gold text-[#1c1206] text-[9px] font-bold flex items-center justify-center">
                     {unreadCount}
                   </div>
                 )}
